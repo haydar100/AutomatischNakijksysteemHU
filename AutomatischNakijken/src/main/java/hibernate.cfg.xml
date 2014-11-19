@@ -8,6 +8,9 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/automatischNakijkenDB</property>
         <property name="hibernate.connection.username">root</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
         <mapping resource="fnt/hu/nl/automatischNakijken/Domain/Course.hbm.xml"/>
+        <mapping resource="fnt/hu/nl/automatischNakijken/Domain/CoursePeriod.hbm.xml"/>
+   
     </session-factory>
 </hibernate-configuration>

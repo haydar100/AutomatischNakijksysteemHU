@@ -1,12 +1,12 @@
 package fnt.hu.nl.automatischNakijken;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
 
 import org.hibernate.*;
 
 import fnt.hu.nl.automatischNakijken.Data.HibernateUtil;
 import fnt.hu.nl.automatischNakijken.Domain.Course;
+import fnt.hu.nl.automatischNakijken.Domain.CoursePeriod;
 
 /**
  * Hello world!
@@ -16,18 +16,16 @@ public class Main
 {
     public static void main( String[] args )
     {
-    	
+    	Course course = new Course("CSCHERP", "TICT-ACS");	
+    	CoursePeriod coursePeriod = new CoursePeriod(Calendar.getInstance(), Calendar.getInstance(), course);
     	Session session = HibernateUtil.getSessionFactory().openSession();
     	session.beginTransaction();
-    	List result = session.createQuery("from Course as course where course.code like 'TICT%'").list();
-    	List<Course> courses = new ArrayList<Course>();
-    	for(Object o : result){
-    		Course course = (Course) o;
-    		courses.add(course);
-    	}
+    	session.save(course);
     	session.getTransaction().commit();
-    	for(Course course : courses)
-    		System.out.println(course.getName() + " " + course.getCode());
+    	session.beginTransaction();
+    	session.save(coursePeriod);
+    	session.getTransaction().commit();
+        System.out.println( "Committed....." + course.getName()+ " " + course.getCode());
         session.close();
     }
 }
