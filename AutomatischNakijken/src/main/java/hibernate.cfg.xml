@@ -11,6 +11,6 @@
         <property name="hibernate.hbm2ddl.auto">create</property>
         <mapping resource="fnt/hu/nl/automatischNakijken/Domain/Course.hbm.xml"/>
         <mapping resource="fnt/hu/nl/automatischNakijken/Domain/CoursePeriod.hbm.xml"/>
-   
+   		<mapping resource="fnt/hu/nl/automatischNakijken/Domain/Class.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

@@ -18,7 +18,7 @@
       	<key>
       		<column name="course_id" not-null="true"/>
       	</key>
-      	<one-to-many class="fnt.hu.nl.automatischNakijken.Domain.CoursePeriod"/>
+      	<one-to-many class="CoursePeriod"/>
       </bag>
    </class>
 </hibernate-mapping>

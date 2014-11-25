@@ -42,5 +42,13 @@ public class Course {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	public List<CoursePeriod> getCoursePeriods() {
+		return coursePeriods;
+	}
+
+	public void setCoursePeriods(List<CoursePeriod> coursePeriods) {
+		this.coursePeriods = coursePeriods;
+	}
 
 }

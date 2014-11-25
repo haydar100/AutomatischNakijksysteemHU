@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping package="fnt.hu.nl.automatischNakijken.Domain">
+	<class name="Class" table="CLASS	">
+	    <meta attribute="class-description">
+	       This class contains the class details. 
+	    </meta>
+	    <id name="id" type="int" column="class_id">
+	       <generator class="native"/>
+	    </id>
+	    <property name="name" column="name" type="string"/>
+	    
+	    <many-to-one name="coursePeriod" class="CoursePeriod" fetch="select">
+	    	<column name="coursePeriod_id" not-null="true" />
+	    </many-to-one>
+    	<bag name="teachingAssistants" table="CLASS_TEACHINGASSISTANTS" inverse="true">
+    		<key column="class_id" not-null="true"/>
+    		<many-to-many column="teachingassistant_id" class="TeachingAssistant"/>
+    	</bag>
+    	<bag name="instructors" table="CLASS_INSTRUCTORS" inverse="true">
+    		<key column="class_id" not-null="true"/>
+    		<many-to-many column="instructor_id" class="Instructor"/>
+    	</bag>
+    	<bag name="groups">
+    		<key column="class_id" not-null="true"/>
+    		<one-to-many class="Group"/>
+    	</bag>
+    	
+   </class>
+</hibernate-mapping>

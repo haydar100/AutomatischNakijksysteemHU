@@ -14,7 +14,7 @@
       <property name="startDate" column="start_date" type="calendar"/>
       <property name="endDate" column="end_date" type="calendar"/>
      
-    	<many-to-one name="course" class="fnt.hu.nl.automatischNakijken.Domain.Course"  fetch="select">
+    	<many-to-one name="course" class="Course"  fetch="select">
     		<column name="course_id" not-null="true"/>
     	</many-to-one>
     
