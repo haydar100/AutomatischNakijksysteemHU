@@ -12,4 +12,9 @@ public abstract class Person {
 		this.fullName = full;
 		this.email = email;
 	}
+	
+	//Hibernate required constructor
+	protected Person(){
+		
+	}
 }
