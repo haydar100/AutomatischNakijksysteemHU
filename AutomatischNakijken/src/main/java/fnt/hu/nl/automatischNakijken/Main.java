@@ -18,12 +18,15 @@ public class Main
     {
     	Course course = new Course("CSCHERP", "TICT-ACS");	
     	CoursePeriod coursePeriod = new CoursePeriod(Calendar.getInstance(), Calendar.getInstance(), course);
+    	CoursePeriod c2 = coursePeriod;
+    	
     	Session session = HibernateUtil.getSessionFactory().openSession();
     	session.beginTransaction();
     	session.save(course);
     	session.getTransaction().commit();
     	session.beginTransaction();
     	session.save(coursePeriod);
+    	session.save(c2);
     	session.getTransaction().commit();
         System.out.println( "Committed....." + course.getName()+ " " + course.getCode());
         session.close();

@@ -13,5 +13,12 @@
       </id>
       <property name="name" column="name" type="string"/>
       <property name="code" column="code" type="string"/>
+      
+      <bag name="coursePeriods" table="COURSEPERIOD" inverse="true" lazy="true" fetch="select">
+      	<key>
+      		<column name="course_id" not-null="true"/>
+      	</key>
+      	<one-to-many class="fnt.hu.nl.automatischNakijken.Domain.CoursePeriod"/>
+      </bag>
    </class>
 </hibernate-mapping>
