@@ -20,10 +20,10 @@
     		<key column="teachingassistant_id" not-null="true"/>
     		<many-to-many column="class_id" class="Class"/>
     	</bag>
-    	<!-- <bag name="evaluations">
+    	<bag name="evaluations" table="SOLUTIONEVALUATIONS" inverse="true">
     		<key column="teachingassistant_id" not-null="true"/>
     		<one-to-many class="SolutionEvaluation"/>
-    	</bag> -->
+    	</bag>
     	
    </class>
 </hibernate-mapping>

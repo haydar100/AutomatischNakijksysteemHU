@@ -22,10 +22,10 @@
     		<key column="group_id" not-null="true"/>
     		<many-to-many column="student_id" class="Student"/>
     	</bag>
-    	<!--  <bag name="solutions">
+    	<bag name="solutions" inverse="true">
     		<key column="group_id" not-null="true"/>
     		<one-to-many class="Solution"/>
-    	</bag> -->
+    	</bag>
     	
    </class>
 </hibernate-mapping>

@@ -8,12 +8,12 @@ import fnt.hu.nl.automatischNakijken.Domain.SolutionSimilarity;
 public class EmailGenerator implements FeedbackGenerator{
 
 	public void GenerateFeedback(SolutionEvaluation solutionEvaluation) {
-		// TODO Auto-generated method stub
+		// TODO 
 		
 	}
 
 	public void GenerateFeedback(List<SolutionSimilarity> sortedSimilarities) {
-		// TODO Auto-generated method stub
+		// TODO 
 		
 	}
 
