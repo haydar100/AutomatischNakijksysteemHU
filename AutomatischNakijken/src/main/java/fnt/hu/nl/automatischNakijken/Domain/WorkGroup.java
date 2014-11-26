@@ -2,7 +2,7 @@ package fnt.hu.nl.automatischNakijken.Domain;
 
 import java.util.List;
 
-public class Group {
+public class WorkGroup {
 	private int id;
 	
 	private int groupNumber;
@@ -10,11 +10,11 @@ public class Group {
 	private List<Solution> solutions;
 	private List<Student> students;
 	
-	private Group(){
+	private WorkGroup(){
 		
 	}
 	
-	public Group(int groupNumber, Class theClass, List<Solution> solutions, List<Student> students){
+	public WorkGroup(int groupNumber, Class theClass, List<Solution> solutions, List<Student> students){
 		this.groupNumber = groupNumber;
 		this.theClass = theClass;
 		this.solutions = solutions;

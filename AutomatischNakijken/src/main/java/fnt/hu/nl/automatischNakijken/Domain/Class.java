@@ -4,11 +4,12 @@ import java.util.List;
 
 public class Class {
 	private String name;
+	private int id;
 
 	private CoursePeriod coursePeriod;
 	private List<TeachingAssistant> teachingAssistants;
 	private List<Instructor> instructors;
-	private List<Group> groups;
+	private List<WorkGroup> groups;
 	
 	private Class(){
 		
@@ -51,12 +52,20 @@ public class Class {
 		this.instructors = instructors;
 	}
 
-	public List<Group> getGroups() {
+	public List<WorkGroup> getGroups() {
 		return groups;
 	}
 
-	public void setGroups(List<Group> groups) {
+	public void setGroups(List<WorkGroup> groups) {
 		this.groups = groups;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	private void setId(int id) {
+		this.id = id;
 	}
 
 }

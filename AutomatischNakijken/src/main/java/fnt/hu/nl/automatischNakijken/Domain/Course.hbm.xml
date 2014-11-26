@@ -14,7 +14,7 @@
       <property name="name" column="name" type="string"/>
       <property name="code" column="code" type="string"/>
       
-      <bag name="coursePeriods" table="COURSEPERIOD" inverse="true" lazy="true" fetch="select">
+      <bag name="coursePeriods" table="COURSEPERIOD" lazy="true" fetch="select" inverse="true">
       	<key>
       		<column name="course_id" not-null="true"/>
       	</key>

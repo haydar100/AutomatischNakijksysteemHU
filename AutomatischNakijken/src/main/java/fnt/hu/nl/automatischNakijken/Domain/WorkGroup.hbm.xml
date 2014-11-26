@@ -4,26 +4,28 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping package="fnt.hu.nl.automatischNakijken.Domain">
-	<class name="Group" table="GROUP">
+	<class name="WorkGroup" table="WORKGROUP">
 	    <meta attribute="class-description">
 	       This class contains the group details. 
 	    </meta>
 	    <id name="id" type="int" column="group_id">
 	       <generator class="native"/>
 	    </id>
-	    <property name="groupNumber" column="groupnumber" type="string"/>
+	    <property name="groupNumber" column="groupnumber" type="int"/>
 	    
-	    <many-to-one name="theClass" class="Class" fetch="select">
+	   <many-to-one name="theClass" class="Class" fetch="select">
 	    	<column name="class_id" not-null="true" />
-	    </many-to-one>
-    	<bag name="students" table="GROUP_STUDENTS" inverse="true">
+	   </many-to-one> 
+	    
+	     
+    	<bag name="students" inverse="true" table="GROUP_STUDENTS" >
     		<key column="group_id" not-null="true"/>
     		<many-to-many column="student_id" class="Student"/>
     	</bag>
-    	<bag name="solutions">
+    	<!--  <bag name="solutions">
     		<key column="group_id" not-null="true"/>
     		<one-to-many class="Solution"/>
-    	</bag>
+    	</bag> -->
     	
    </class>
 </hibernate-mapping>

@@ -12,8 +12,10 @@
         <mapping resource="fnt/hu/nl/automatischNakijken/Domain/Course.hbm.xml"/>
         <mapping resource="fnt/hu/nl/automatischNakijken/Domain/CoursePeriod.hbm.xml"/>
    		<mapping resource="fnt/hu/nl/automatischNakijken/Domain/Class.hbm.xml"/>
-   		<mapping resource="fnt/hu/nl/automatischNakijken/Domain/Group.hbm.xml"/>
+   		<mapping resource="fnt/hu/nl/automatischNakijken/Domain/WorkGroup.hbm.xml"/>
    		<mapping resource="fnt/hu/nl/automatischNakijken/Domain/Instructor.hbm.xml"/>
-   		<mapping resource="fnt/hu/nl/automatischNakijken/Domain/TeachingAssistant.hbm.xml"/>
+    	<mapping resource="fnt/hu/nl/automatischNakijken/Domain/SolutionEvaluation.hbm.xml"/>
+    	<mapping resource="fnt/hu/nl/automatischNakijken/Domain/TeachingAssistant.hbm.xml"/>
+    	<mapping resource="fnt/hu/nl/automatischNakijken/Domain/Student.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

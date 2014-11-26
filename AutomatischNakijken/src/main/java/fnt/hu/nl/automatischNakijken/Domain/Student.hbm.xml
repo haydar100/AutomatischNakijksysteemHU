@@ -4,26 +4,21 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping package="fnt.hu.nl.automatischNakijken.Domain">
-	<class name="Instructor" table="INSTRUCTOR">
+	<class name="Student" table="STUDENT">
 	    <meta attribute="class-description">
-	       This class contains the Instructor details. 
+	       This class contains the class details. 
 	    </meta>
-	    <id name="id" type="int" column="Instructor_id">
+	    <id name="id" type="int" column="student_id">
 	       <generator class="native"/>
 	    </id>
 	    <property name="firstName" column="first_name" type="string"/>
 	    <property name="surName" column="sur_name" type="string"/>
 	    <property name="fullName" column="full_name" type="string"/>
 	    <property name="email" column="email" type="string"/>
-	   
-    	<bag name="classes" table="CLASS_INSTRUCTORS">
-    		<key column="Instructor_id" not-null="true"/>
-    		<many-to-many column="class_id" class="Class"/>
+	    
+	    <bag name="groups" table="GROUP_STUDENTS" >
+    		<key column="student_id" not-null="true"/>
+    		<many-to-many column="group_id" class="WorkGroup"/>
     	</bag>
-    	<!-- <bag name="evaluations">
-    		<key column="Instructor_id" not-null="true"/>
-    		<one-to-many class="SolutionEvaluation"/>
-    	</bag> -->
-    	
    </class>
 </hibernate-mapping>
