@@ -11,13 +11,18 @@
 	    <id name="id" type="int" column="solutionevaluation_id">
 	       <generator class="native"/>
 	    </id>
-	    <property name="timeOfEvaluation" column="time_of_evaluation" type="Calendar"/>
-	    <property name="grade" column="grade">
-		    <type name="Grade">
-		        <param name="enumClass">Grade</param>
-		    </type>
-		</property>
-		<one-to-one name="solution" column="solution_id" class="Solution" cascade="save-update"/>
+	    
+	    <property name="timeOfEvaluation" column="time_of_evaluation" type="calendar"/>
+	    
+	    <property name="finalGrade" column="finalgrade">
+	    	<type name="org.hibernate.type.EnumType">
+	    	<param name="enumClass">fnt.hu.nl.automatischNakijken.Domain.Grade</param>
+	    	<param name="type">12</param>
+	    	</type>
+	    </property>
+		  
+		
+		<one-to-one name="solution" class="Solution" cascade="save-update"></one-to-one>
  		<bag name="criteria" table="SOLUTIONEVALUATIONCRITERIA" lazy="true" inverse ="true">
     		<key column="solutionevaluation_id" not-null="true"/>
     		<one-to-many class="SolutionEvaluationCriteria"/>

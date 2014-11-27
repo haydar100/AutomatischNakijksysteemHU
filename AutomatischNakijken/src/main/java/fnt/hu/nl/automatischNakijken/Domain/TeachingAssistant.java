@@ -10,7 +10,7 @@ public class TeachingAssistant extends Staff {
 		super(first, sur, full, email);
 	}
 	
-	private int getId() {
+	public int getId() {
 		return id;
 	}
 

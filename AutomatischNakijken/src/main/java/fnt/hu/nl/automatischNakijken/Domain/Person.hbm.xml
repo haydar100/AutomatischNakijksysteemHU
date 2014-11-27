@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping package="fnt.hu.nl.automatischNakijken.Domain">
+	<class name="Person" table="PERSON" discriminator-value="P">
+	    <meta attribute="class-description">
+	       This class contains the class details. 
+	    </meta>
+	    <id name="id" type="int" column="person_id">
+	       <generator class="native"/>
+	    </id>
+	    
+	    <discriminator column="DISCRIMINATOR" type="string"/>
+	    
+	    <property name="firstName" column="first_name" type="string"/>
+	    <property name="surName" column="sur_name" type="string"/>
+	    <property name="fullName" column="full_name" type="string"/>
+	    <property name="email" column="email" type="string"/>
+	    
+	    <subclass name="Student" extends="Person" discriminator-value="S">
+	    
+	    <bag name="groups" table="GROUP_STUDENTS" >
+    		<key column="student_id" not-null="true"/>
+    		<many-to-many column="group_id" class="WorkGroup"/>
+    	</bag>
+    	
+    	<bag name="solutions" table="STUDENT_SOLUTIONS" inverse="true">
+    		<key column="person_id" not-null="true"/>
+    		<many-to-many column="solution_id" class="Solution"/>
+    	</bag>
+    	</subclass>
+    	
+    	<subclass name="Staff" extends="Person" discriminator-value="ST">
+    	<bag name="evaluations" table="STAFFEVALUATIONS" lazy="true" inverse ="true">
+    		<key column="solutionEvaluation_id" not-null="true"/>
+    		<one-to-many class="SolutionEvaluation"/>
+    	</bag>
+    	</subclass>
+    	
+    	<subclass name="Instructor" extends="Staff" discriminator-value="INS">
+    	<bag name="classes" table="CLASS_INSTRUCTORS">
+    		<key column="person_id" not-null="true"/>
+    		<many-to-many column="class_id" class="Class"/>
+    	</bag>
+    	<bag name="evaluations" table="SOLUTIONEVALUATIONS" inverse="true">
+    		<key column="person_id" not-null="true"/>
+    		<one-to-many class="SolutionEvaluation"/> 
+    	</bag>
+    	</subclass>
+    	
+    	<subclass name="TeachingAssistant" extends="Staff" discriminator-value="TA">
+    	<bag name="classes" table="CLASS_TEACHINGASSISTANTS">
+    		<key column="person_id" not-null="true"/>
+    		<many-to-many column="class_id" class="Class"/>
+    	</bag>
+    	<bag name="evaluations" table="SOLUTIONEVALUATIONS" inverse="true">
+    		<key column="person_id" not-null="true"/>
+    		<one-to-many class="SolutionEvaluation"/>
+    	</bag>
+    	</subclass>
+    
+   </class>
+</hibernate-mapping>

@@ -12,10 +12,11 @@
 	       <generator class="native"/>
 	    </id>
 	    <property name="timeOfSubmission" column="time_of_submission" type="calendar"></property>
-  		<property name="isCurrent" column="is_current" type="true_false"></property>
-  		<one-to-one name="nextVersion" column="solution_id" class="Solution" cascade="save-update"></one-to-one>
-  		<one-to-one name="previousVersion" column="solution_id" class="Solution" cascade="save-update"></one-to-one>
-  		<one-to-one name="solutionEvaluation" column="solutionevaluation_id" class="SolutionEvaluation" cascade="save-update"></one-to-one>
+  		<property name="isCurrent" column="is_current" type="boolean"></property>
+  		
+  		<one-to-one name="nextVersion" class="Solution" cascade="save-update"></one-to-one>
+  		<one-to-one name="previousVersion" class="Solution" cascade="save-update"></one-to-one>
+  		<one-to-one name="solutionEvaluation" class="SolutionEvaluation" cascade="save-update"></one-to-one>
   		
   		<many-to-one name="group" class="WorkGroup" fetch="select">
   			<column name="group_id" not-null="true"></column>

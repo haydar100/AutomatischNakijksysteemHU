@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping package="fnt.hu.nl.automatischNakijken.Domain">
+	<class name="SolutionRepository" table="SOLUTIONREPOSITORY">
+	    <meta attribute="class-description">
+	       This class contains the group details. 
+	    </meta>
+	    <id name="id" type="int" column="solutionRepository_id">
+	       <generator class="native"/>
+	    </id>
+	    
+	   <!--   <bag name="solutions" table="SOLUTIONREPOSITORY_SOLUTIONS" lazy="true" fetch="select" inverse="true">
+      	<key>
+      		<column name="solution_id" not-null="true"/>
+      	</key>
+      	<one-to-many class="Solution"/>
+      </bag> -->
+	   
+	   
+ 
+	  <one-to-one name="assignment" class="Assignment" fetch="select"/>
+	   
+	    <bag name="assignmentTypes" table="SOLUTIONREPOSITORY_ASSIGNMENT_TYPES" lazy="true" fetch="select" inverse="true">
+      	<key>
+      		<column name="assignmentType_id" not-null="true"/>
+      	</key>
+      	<one-to-many class="AssignmentType"/>
+      </bag>
+	   
+   </class>
+</hibernate-mapping>

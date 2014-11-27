@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping package="fnt.hu.nl.automatischNakijken.Domain">
+	<class name="AssignmentType" table="ASSIGNMENTTYPE">
+	    <meta attribute="class-description">
+	       This class contains the group details. 
+	    </meta>
+	    <id name="id" type="int" column="assignmentType_id">
+	       <generator class="native"/>
+	    </id>
+	   
+	   <property name="name" column="name" type="string"/>
+	   <property name="description" column="description" type="boolean"/>
+	   
+	   <many-to-one name="course" class="Course" fetch="select">
+	    	<column name="course_id" not-null="true" />
+	   </many-to-one>
+	   
+	   <bag name="assignments" table="ASSIGNMENTS" lazy="true" fetch="select" inverse="true">
+      	<key>
+      		<column name="assignment_id" not-null="true"/>
+      	</key>
+      	<one-to-many class="Assignment"/>
+      </bag>
+	   
+	  <!--  <one-to-many name="assignments" class="Assignment" fetch="select">
+	    	<column name="assignment_id" not-null="true" />
+	   </one-to-many>
+	    -->
+	<!--   <many-to-many name="checks" class="AssignmentCheck" fetch="select">
+	    	<column name="assignmentCheck_id" not-null="true" />
+	   </many-to-many> -->
+	   
+	 <!--   <bag name="checks" table="ASSIGNMENTTYPE_CHECKS" inverse="true">
+    		<key column="assignmentType_id" not-null="true"/>
+    		<many-to-many column="assignmentCheck_id" class="assignmentCheck"/>
+    	</bag> -->
+	   
+	   <many-to-one name="solutionRepository" class="SolutionRepository" fetch="select">
+	    	<column name="solutionRepository_id" not-null="true" />
+	  </many-to-one>
+	      	
+   </class>
+</hibernate-mapping>

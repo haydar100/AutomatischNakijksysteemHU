@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping package="fnt.hu.nl.automatischNakijken.Domain">
+	<class name="Assignment" table="ASSIGNMENT">
+	    <meta attribute="class-description">
+	       This class contains the group details. 
+	    </meta>
+	    <id name="id" type="int" column="assignment_id">
+	       <generator class="native"/>
+	    </id>
+	   
+	   <property name="deadLine" column="deadLine" type="calendar"/>
+	   <property name="allowTeachingAssistant" column="allowTeachingAssistant" type="boolean"/>
+	   
+	   <many-to-one name="coursePeriod" class="CoursePeriod">
+	    	<column name="coursePeriod_id" not-null="true" />
+	   </many-to-one>
+	   
+	   <many-to-one name="assignmentType" class="AssignmentType">
+	    	<column name="assignmentType_id" not-null="true" />
+	   </many-to-one>
+	   
+	    <one-to-one name="solutionRepository" class="SolutionRepository" fetch="select"/>
+	  
+	      	
+   </class>
+</hibernate-mapping>

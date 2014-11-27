@@ -20,8 +20,28 @@ public class Solution {
 	private Calendar timeOfSubmission;
 	private boolean isCurrent;
 	
+	
 	public Solution() {
 		
+	}
+	public Solution(SolutionRepository solutionRepository,
+			Solution nextVersion, Solution previousVersion,
+			SolutionEvaluation solutionEvaluation,
+			List<SolutionSimilarity> similarities, WorkGroup group,
+			List<Student> students, List<File> files,
+			Calendar timeOfSubmission, boolean isCurrent) {
+		super();
+		
+		this.solutionRepository = solutionRepository;
+		this.nextVersion = nextVersion;
+		this.previousVersion = previousVersion;
+		this.solutionEvaluation = solutionEvaluation;
+		this.similarities = similarities;
+		this.group = group;
+		this.students = students;
+		this.files = files;
+		this.timeOfSubmission = timeOfSubmission;
+		this.isCurrent = isCurrent;
 	}
 	public int getId() {
 		return id;
@@ -79,10 +99,12 @@ public class Solution {
 	public void setTimeOfSubmission(Calendar timeOfSubmission) {
 		this.timeOfSubmission = timeOfSubmission;
 	}
-	public boolean isCurrent() {
+	
+	public boolean getisCurrent() {
 		return isCurrent;
 	}
-	public void setCurrent(boolean isCurrent) {
+	
+	public void setisCurrent(boolean isCurrent) {
 		this.isCurrent = isCurrent;
 	}
 

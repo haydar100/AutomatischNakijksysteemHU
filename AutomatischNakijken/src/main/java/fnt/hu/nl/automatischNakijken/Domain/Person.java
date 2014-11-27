@@ -1,9 +1,19 @@
 package fnt.hu.nl.automatischNakijken.Domain;
 
 public abstract class Person {
+	private int id;
 	private String firstName;
+	
 	public String getFirstName() {
 		return firstName;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	private void setId(int id) {
+		this.id = id;
 	}
 
 	public void setFirstName(String firstName) {
