@@ -1,6 +1,7 @@
 package fnt.hu.nl.automatischNakijken;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,6 +26,7 @@ import fnt.hu.nl.automatischNakijken.Domain.Student;
 import fnt.hu.nl.automatischNakijken.Domain.Class;
 import fnt.hu.nl.automatischNakijken.Domain.TeachingAssistant;
 import fnt.hu.nl.automatischNakijken.Logic.JavaConverter;
+import fnt.hu.nl.automatischNakijken.Logic.MyURIClassLoader;
 import fnt.hu.nl.automatischNakijken.Logic.SourceCodeConverter;
 
 /**
@@ -36,10 +38,19 @@ public class Main
 	
     public static void main( String[] args )
     {
-    	setupDatabaseEntities();
+		
+    	MyURIClassLoader mcl = new MyURIClassLoader();
+		try {
+			mcl.compileJava();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	//setupDatabaseEntities();
     }
     
 	private static void setupDatabaseEntities() {
+		
 		ArrayList<Solution> solutions = new ArrayList<Solution>();   	
     	ArrayList<Student> students = new ArrayList<Student>();
 		Course course = new Course("CSCHERP", "TICT-ACS");
