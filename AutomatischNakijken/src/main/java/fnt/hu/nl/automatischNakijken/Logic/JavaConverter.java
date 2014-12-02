@@ -49,15 +49,24 @@ public class JavaConverter implements SourceCodeConverter{
 			FileWriter fw = new FileWriter(fileToNormalise.getAbsolutePath()); 
 			
 			String line;
-
+			String fileContent = "";
+			//Build string representation to check for multiline operations 
 			while((line = br.readLine()) != null)
 			{ 
-				String formattedLine = checkLineForContent(line);
-				if(formattedLine != null)
-				
-					//Replace variable names
-					fw.write(formattedLine + "\n");	
+				fileContent += line +"\n";
 			}
+			fileContent = removeCommentBlocksFromContent(fileContent);
+			fileContent = removeImportStatements(fileContent);
+			
+			//Split in lines and execute single line operations
+			String[] lines = fileContent.split("\\n");
+			for(String temp : lines)
+			{
+				temp = removeWhiteSpaces(temp);
+				if(temp != null)
+					fw.write(temp + "\n");
+			}
+			
 			fr.close();
 			br.close();
 			fw.close();
@@ -68,15 +77,25 @@ public class JavaConverter implements SourceCodeConverter{
 		}
 	}
 	
-	//This method will return a String if it has any content after removing whitespace and single line comments and null otherwise.
-	private String checkLineForContent(String lineToCheck){
+	private String removeImportStatements(String fileContent) {
+		String outputContent = fileContent.replaceAll("import.*;", "");
+		return outputContent;
+	}
+
+	//This method will return a String if it has any content after removing whitespace and null otherwise.
+	private String removeWhiteSpaces(String lineToCheck){
 		lineToCheck.trim();
-		String uncommentedLine = lineToCheck.replaceAll("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)", "");
 		//Only return a string when the line is not empty
-		if(!uncommentedLine.matches("\\s*")){
-			String formattedLine = uncommentedLine.replaceAll("\t", "");
+		if(!lineToCheck.matches("\\s*")){
+			String formattedLine = lineToCheck.replaceAll("\t", "");
 			return formattedLine;	
 		}
 		return null;
+	}
+	
+	private String removeCommentBlocksFromContent(String inputContent){
+		String outputContent;
+		outputContent = inputContent.replaceAll("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)", "");
+		return outputContent;
 	}
 }

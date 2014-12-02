@@ -18,11 +18,11 @@
 	    </many-to-one>
     	<bag name="teachingAssistants" table="CLASS_TEACHINGASSISTANTS" inverse="true">
     		<key column="class_id" not-null="true"/>
-    		<many-to-many column="teachingassistant_id" class="TeachingAssistant"/>
+    		<many-to-many column="person_id" class="TeachingAssistant"/>
     	</bag>
     	<bag name="instructors" table="CLASS_INSTRUCTORS" inverse="true">
     		<key column="class_id" not-null="true"/>
-    		<many-to-many column="instructor_id" class="Instructor"/>
+    		<many-to-many column="person_id" class="Instructor"/>
     	</bag>
     	
     	<bag name="groups" table="WORKGROUP" lazy="true" fetch="select" inverse="true">

@@ -19,7 +19,7 @@
 	    <property name="fullName" column="full_name" type="string"/>
 	    <property name="email" column="email" type="string"/>
 	    
-	    <subclass name="Student" extends="Person" discriminator-value="S">
+	    <subclass name="Student" extends="Person" discriminator-value="STUDENT">
 	    
 	    <bag name="groups" table="GROUP_STUDENTS" >
     		<key column="student_id" not-null="true"/>
@@ -32,14 +32,15 @@
     	</bag>
     	</subclass>
     	
-    	<subclass name="Staff" extends="Person" discriminator-value="ST">
+    	
+    	<subclass name="Staff" extends="Person" discriminator-value="STAFF">
     	<bag name="evaluations" table="STAFFEVALUATIONS" lazy="true" inverse ="true">
     		<key column="solutionEvaluation_id" not-null="true"/>
     		<one-to-many class="SolutionEvaluation"/>
     	</bag>
     	</subclass>
     	
-    	<subclass name="Instructor" extends="Staff" discriminator-value="INS">
+    	<subclass name="Instructor" extends="Staff" discriminator-value="INSTRUCTOR">
     	<bag name="classes" table="CLASS_INSTRUCTORS">
     		<key column="person_id" not-null="true"/>
     		<many-to-many column="class_id" class="Class"/>
@@ -50,7 +51,7 @@
     	</bag>
     	</subclass>
     	
-    	<subclass name="TeachingAssistant" extends="Staff" discriminator-value="TA">
+    	<subclass name="TeachingAssistant" extends="Staff" discriminator-value="TEACHINGASSISTANT">
     	<bag name="classes" table="CLASS_TEACHINGASSISTANTS">
     		<key column="person_id" not-null="true"/>
     		<many-to-many column="class_id" class="Class"/>

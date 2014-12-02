@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
+
 import org.hibernate.*;
 
 import fnt.hu.nl.automatischNakijken.Data.HibernateUtil;
@@ -50,6 +52,8 @@ public class Main
     	List<Assignment> assignments = new ArrayList<Assignment>();
     	List<AssignmentCheck> checks = new ArrayList<AssignmentCheck>();
     	List<AssignmentType> assignmentTypes = new ArrayList<AssignmentType>();
+    	List<Instructor> instructors = new ArrayList<Instructor>();
+    	instructors.add(instructor);
     	File f = new File("C:/Users/lol.txt");
     	SolutionRepository sr = new SolutionRepository(null, null, null, true);
     	AssignmentType at = new AssignmentType(course, assignments, checks, sr, f, "TestAssignmentType", "Hibernate mapping test");
@@ -61,8 +65,10 @@ public class Main
     	sr.setActive(true);
     	
     	Student student = new Student("Haydar", "Yilmaz", "Haydar Yilmaz", "haydar.yilmaz@gmail.com");
-    	
-    	
+    	List<Class> classes = new ArrayList<Class>();
+    	classes.add(c1);
+    	instructor.setClasses(classes);
+    	c1.setInstructors(instructors);
     	
     	//AssignmentType at = new AssignmentType(course, assignments, checks, sr, testTemplate, "TestAssignmentType", "Hibernate mapping test");
     	
@@ -80,6 +86,7 @@ public class Main
     	Calendar startTime = Calendar.getInstance();
     	groups.add(group);
     	student.setGroups(groups);
+    	c1.setGroups(groups);
     	Calendar c= Calendar.getInstance(); 
     	c.set(2014, 3, 1);
     	Calendar c2= Calendar.getInstance(); 
