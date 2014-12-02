@@ -72,7 +72,7 @@ public class Main
     	students.add(student);
     	
     //	solutions.add(solution);
-    	
+    	Calendar startTime = Calendar.getInstance();
     	groups.add(group);
     	student.setGroups(groups);
     	Calendar c= Calendar.getInstance(); 
@@ -102,6 +102,9 @@ public class Main
     	//System.out.println("Session commited....");
        // session.close();
       //  System.out.println("Session closed.... !");
+    	Calendar endTime = Calendar.getInstance();
+    	long totalTime = startTime.getTimeInMillis() - endTime.getTimeInMillis();
+    	System.out.println(totalTime);
     	session.close();
     	System.out.println("reached");
     }
