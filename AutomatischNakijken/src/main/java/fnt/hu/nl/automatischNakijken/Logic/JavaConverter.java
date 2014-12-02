@@ -77,6 +77,7 @@ public class JavaConverter implements SourceCodeConverter{
 		}
 	}
 	
+	//This method removes import statements from the source file
 	private String removeImportStatements(String fileContent) {
 		String outputContent = fileContent.replaceAll("import.*;", "");
 		return outputContent;
@@ -93,6 +94,12 @@ public class JavaConverter implements SourceCodeConverter{
 		return null;
 	}
 	
+	//This method will normalise variable names to X 
+	private String normaliseVariableNames(String lineToCheck){
+		return null;
+	}
+	
+	//This method removes the comments from a source file 
 	private String removeCommentBlocksFromContent(String inputContent){
 		String outputContent;
 		outputContent = inputContent.replaceAll("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)", "");
