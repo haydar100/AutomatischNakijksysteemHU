@@ -24,15 +24,17 @@ public class MyClassLoader extends ClassLoader {
 
 	
 	public Class<?> loadClass(String filePath) throws ClassNotFoundException {
-		Class<?> c = null;
+		Class<?> cl = null;
 		File file = new File(filePath);
 		File directory = file.getParentFile();
 		try {
 			URL url = new URL("file://" + directory.getAbsolutePath());
 			URL[] classUrls = { url };
 			URLClassLoader classLoader = new URLClassLoader(classUrls);
-			c = classLoader.loadClass("TestClass");
-			System.out.println("classLoader loaded " + c.getName());
+			cl = Class.forName("Foo", true, classLoader);
+			Runnable foo = (Runnable) cl.newInstance();
+			foo.run();
+			System.out.println("classLoader loaded " + cl.getName());
 			try {
 				classLoader.close();
 			} catch (IOException e) {
@@ -42,8 +44,14 @@ public class MyClassLoader extends ClassLoader {
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		return c ;
+		return cl ;
 	
 	
 		
