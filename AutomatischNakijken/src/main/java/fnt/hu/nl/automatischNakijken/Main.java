@@ -22,6 +22,8 @@ import fnt.hu.nl.automatischNakijken.Domain.Solution;
 import fnt.hu.nl.automatischNakijken.Domain.Student;
 import fnt.hu.nl.automatischNakijken.Domain.Class;
 import fnt.hu.nl.automatischNakijken.Domain.TeachingAssistant;
+import fnt.hu.nl.automatischNakijken.Logic.JavaConverter;
+import fnt.hu.nl.automatischNakijken.Logic.SourceCodeConverter;
 
 /**
  * Main class Automatisch nakijksysteem
@@ -32,8 +34,11 @@ public class Main
 	
     public static void main( String[] args )
     {
-    	
-    	ArrayList<Solution> solutions = new ArrayList<Solution>();   	
+    	setupDatabaseEntities();
+    }
+    
+	private static void setupDatabaseEntities() {
+		ArrayList<Solution> solutions = new ArrayList<Solution>();   	
     	ArrayList<Student> students = new ArrayList<Student>();
 		Course course = new Course("CSCHERP", "TICT-ACS");
     	TeachingAssistant teachingAssistant = new TeachingAssistant("Roy", "Straub", "Roy Straub", "Roy.straub@student.hu.nl");
@@ -107,5 +112,5 @@ public class Main
     	System.out.println(totalTime);
     	session.close();
     	System.out.println("reached");
-    }
+	}
 }
