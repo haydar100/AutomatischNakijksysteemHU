@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
+import org.junit.runner.Runner;
 import org.junit.runner.notification.Failure;
 
 public class Unittester {
@@ -48,7 +49,7 @@ public class Unittester {
 
 	public void loadClassToBeTested(String className, String rootFolder) {
 		try {
-			loadedClass = mcl.loadInstantiateCompiledClass(className, rootFolder);
+			loadedClass = mcl.loadCompiledClass(className, rootFolder);
 			instanceOfClass = loadedClass.newInstance();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -66,6 +67,7 @@ public class Unittester {
 	}
 	
 	public void runTestCase(Class<?> testCase) throws InstantiationException, IllegalAccessException {
+		
 		if (testCase != null) {
 			Result result = JUnitCore.runClasses(testCase);
 			for (Failure failure : result.getFailures()) {

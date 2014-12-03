@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
@@ -34,12 +35,10 @@ public class URIClassLoader {
 		}
 	}
 	
-	public Class<?> loadInstantiateCompiledClass(String className, String rootFolder) throws MalformedURLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public Class<?> loadCompiledClass(String className, String rootFolder) throws MalformedURLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		File root = new File(rootFolder);
 		URLClassLoader classLoader = URLClassLoader.newInstance(new URL[] { root.toURI().toURL() });
 		Class<?> cls = Class.forName(className, true, classLoader);
-		Object instance = cls.newInstance();
-		System.out.println(instance);
 		return cls;
 		
 	}
