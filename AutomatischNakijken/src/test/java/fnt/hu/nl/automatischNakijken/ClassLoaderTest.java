@@ -1,33 +1,21 @@
 package fnt.hu.nl.automatischNakijken;
 
 
-import java.io.File;
-import java.net.URL;
+import java.lang.reflect.InvocationTargetException;
 
-import fnt.hu.nl.automatischNakijken.Logic.MyURIClassLoader;
 import junit.framework.TestCase;
+import fnt.hu.nl.automatischNakijken.Logic.Unittester;
 
 public class ClassLoaderTest extends TestCase {
 	
-	public void restCompileJava() {
-		MyURIClassLoader mcl = new MyURIClassLoader();
-		try {
-			mcl.compileJava();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void testOutput() throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		
+    	
+		String test = "Hello world!";
+		assertEquals("Hello woasd!", "test");
 	
 		
 	}
 	
-	public void testLoadClass() {
-		MyURIClassLoader mcl = new MyURIClassLoader();
-		mcl.loadClass("C:\\Users\\Berkan\\Documents\\testfolder", "HelloWorldApp");
-		assertTrue(mcl.getClass().getName() != null);
-		
-		
-	}
 
 }
