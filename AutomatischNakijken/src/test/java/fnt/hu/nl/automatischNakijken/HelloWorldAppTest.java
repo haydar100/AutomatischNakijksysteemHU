@@ -1,32 +1,66 @@
-package fnt.hu.nl.automatischNakijken;
+/*package fnt.hu.nl.automatischNakijken;
 
-import java.net.MalformedURLException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import junit.framework.TestCase;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
-import fnt.hu.nl.automatischNakijken.Logic.URIClassLoader;
-import fnt.hu.nl.automatischNakijken.Logic.Unittester;
 
+
+
+@RunWith(Parameterized.class)
 public class HelloWorldAppTest extends TestCase {
-	public Class<?> loadedClass;
+	
+	private Class clazz;
+	private Method method;
 
+	public HelloWorldAppTest(Class clazz, Method method) {
+		this.clazz = clazz;
+		this.method = method;
+	}
+	
+	
+
+	@Parameters
+	public static Collection<Object[]> classesAndMethods()
+			throws NoSuchMethodException, SecurityException {
+		List<Object[]> list = new ArrayList<Object[]>();
+		list.add(new Object[] { HelloWorldApp.class, HelloWorldApp.class.getDeclaredMethod("getHello") });
+		return list;
+	}
+	
 	@Test
-	public void testOutput() throws MalformedURLException,
-			ClassNotFoundException, InstantiationException,
-			IllegalAccessException {
-		Object hwp = new HelloWorldApp();
-		Unittester ut = new Unittester();
-		URIClassLoader uricl = new URIClassLoader();
-		uricl.compileJavaSourceFile("C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java\\");
-		loadedClass = uricl.loadCompiledClass("HelloWorldApp",
-				"C:\\Users\\Berkan\\Desktop\\test");
-		hwp = loadedClass.newInstance();
+	public void testMethodA() throws NoSuchMethodException, SecurityException {
+	Method m = HelloWorldApp.class.getDeclaredMethod("getHello");
+	Object k;
+	try {
+		k = HelloWorldApp.class.newInstance();
 		
-		System.out.println(hwp.toString());
-		assertEquals("Hello World !123", hwp.toString());
-
+		assertEquals("Hello world !", m.invoke(k));
+	} catch (InstantiationException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IllegalAccessException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IllegalArgumentException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (InvocationTargetException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
 
-}
+		
+	
+	}
+
+}*/

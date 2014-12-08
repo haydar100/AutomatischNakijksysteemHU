@@ -28,7 +28,6 @@ import fnt.hu.nl.automatischNakijken.Domain.WorkGroup;
 public class Main {
 
 	public static void main(String[] args) {
-
 		setupDatabaseEntities();
 	}
 

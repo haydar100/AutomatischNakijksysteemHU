@@ -16,6 +16,10 @@ import java.util.List;
 
 import javax.tools.*;
 
+import com.sun.org.apache.bcel.internal.Repository;
+import com.sun.org.apache.bcel.internal.util.ClassPath;
+import com.sun.org.apache.bcel.internal.util.SyntheticRepository;
+
 public class URIClassLoader {
 
 	public URIClassLoader() {
@@ -34,6 +38,14 @@ public class URIClassLoader {
 			System.out.println("Compile error");
 		}
 	}
+	
+	
+	public void executeTests() {
+	
+	}
+	
+
+	
 	
 	public Class<?> loadCompiledClass(String className, String rootFolder) throws MalformedURLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		File root = new File(rootFolder);
