@@ -1,12 +1,15 @@
 package fnt.hu.nl.automatischNakijken;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
 
 import fnt.hu.nl.automatischNakijken.data.HibernateUtil;
 import fnt.hu.nl.automatischNakijken.domain.Assignment;
@@ -31,10 +34,14 @@ import fnt.hu.nl.automatischNakijken.util.TestRunner;
  */
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
 		//setupDatabaseEntities();
 		TestRunner runner = new TestRunner();
-		runner.runClass(IHelloWorldAppTest.class);
+		IHelloWorldAppTest instance = new IHelloWorldAppTest();
+		instance.setClassName("HelloWorldApp");
+		instance.setPathToClass("C:\\Users\\Berkan\\Desktop\\test\\");
+		runner.runClass(instance.getClass());
+		
 	}
 
 	private static void setupDatabaseEntities() {

@@ -1,7 +1,5 @@
 package fnt.hu.nl.automatischNakijken.test;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 
 import junit.framework.TestCase;
@@ -11,21 +9,55 @@ import org.junit.Test;
 import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
 import fnt.hu.nl.opdracht.IHelloWorldApp;
 
-public class IHelloWorldAppTest extends TestCase{
+public class IHelloWorldAppTest extends TestCase {
+	public static String className;
+	public static String pathToClass;
+
+	/**
+	 * 
+	 */
+	public IHelloWorldAppTest() {
+		super();
+	}
+
+	/**
+	 * @return the className
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * @param className
+	 *            the className to set
+	 */
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	/**
+	 * @return the pathToClass
+	 */
+	public String getPathToClass() {
+		return pathToClass;
+	}
+
+	/**
+	 * @param pathToClass
+	 *            the pathToClass to set
+	 */
+	public void setPathToClass(String pathToClass) {
+		this.pathToClass = pathToClass;
+	}
 
 	@Test
 	public void testMethodA() throws ClassNotFoundException,
 			InstantiationException, IllegalAccessException, IOException {
 		URIClassLoader test = new URIClassLoader();
-		/*test.compileJavaSourceFile("C:\\Users\\Berkan\\Desktop\\test\\IHelloWorldApp.java");*/
-		test.compileJavaSourceFile("C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java");
-		Class kaas = test.loadCompiledClass("HelloWorldApp",
-				"C:\\Users\\Berkan\\Desktop\\test\\");
-		
-		//System.out.println(((IHelloWorldApp)kaas.newInstance()).getHello());
-		IHelloWorldApp aapje = ((IHelloWorldApp)kaas.newInstance()); 
-		assertEquals(aapje.getHello(), "Hello World pissdbaas123");
-		
+		Class loadedClass = test.loadCompiledClass(className, pathToClass);
+		IHelloWorldApp ihwp = ((IHelloWorldApp) loadedClass.newInstance());
+		assertEquals(ihwp.getHello(), "Hello World pissdbaas123");
+
 	}
 
 }
