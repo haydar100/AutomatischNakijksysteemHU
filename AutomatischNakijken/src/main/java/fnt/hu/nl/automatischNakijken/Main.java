@@ -1,6 +1,7 @@
 package fnt.hu.nl.automatischNakijken;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -20,6 +21,8 @@ import fnt.hu.nl.automatischNakijken.Domain.SolutionRepository;
 import fnt.hu.nl.automatischNakijken.Domain.Student;
 import fnt.hu.nl.automatischNakijken.Domain.TeachingAssistant;
 import fnt.hu.nl.automatischNakijken.Domain.WorkGroup;
+import fnt.hu.nl.automatischNakijken.test.IHelloWorldAppTest;
+import fnt.hu.nl.automatischNakijken.test.JavaConverterTest;
 
 /**
  * Main class Automatisch nakijksysteem
@@ -28,7 +31,9 @@ import fnt.hu.nl.automatischNakijken.Domain.WorkGroup;
 public class Main {
 
 	public static void main(String[] args) {
-		setupDatabaseEntities();
+		//setupDatabaseEntities();
+		TestRunner runner = new TestRunner();
+		runner.runClass(IHelloWorldAppTest.class);
 	}
 
 	private static void setupDatabaseEntities() {

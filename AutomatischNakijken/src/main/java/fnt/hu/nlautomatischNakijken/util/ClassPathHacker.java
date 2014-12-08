@@ -1,4 +1,4 @@
-package fnt.hu.nl.automatischNakijken.Logic;
+package fnt.hu.nlautomatischNakijken.util;
 
 import java.lang.reflect.Method;
 import java.net.URL;

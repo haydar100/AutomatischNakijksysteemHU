@@ -1,4 +1,4 @@
-package fnt.hu.nl.automatischNakijken.Logic;
+package fnt.hu.nlautomatischNakijken.util;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -29,13 +29,13 @@ public class URIClassLoader {
 
 	public void compileJavaSourceFile(String sourcePath) throws MalformedURLException {
 		File sourceFile = new File(sourcePath);
-		File root = new File("C:\\Users\\Berkan\\Desktop\\test");
+		
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 		int result = compiler.run(null, null, null, sourceFile.getPath());
 		if (result == 0) {
-			System.out.println("Compiled.... succesfully");
+			System.out.println("Compiled...." + " " + sourceFile.getPath() + " Succesfully.");
 		} else {
-			System.out.println("Compile error");
+			System.out.println("Compile error" + " "+ sourceFile.getPath());
 		}
 	}
 	

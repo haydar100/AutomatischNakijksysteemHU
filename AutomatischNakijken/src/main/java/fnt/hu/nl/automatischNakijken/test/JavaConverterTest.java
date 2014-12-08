@@ -1,4 +1,4 @@
-package fnt.hu.nl.automatischNakijken;
+package fnt.hu.nl.automatischNakijken.test;
 
 import java.io.File;
 

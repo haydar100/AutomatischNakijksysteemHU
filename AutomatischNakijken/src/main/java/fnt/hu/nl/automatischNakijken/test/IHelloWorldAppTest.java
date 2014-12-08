@@ -1,15 +1,17 @@
-package fnt.hu.nl.automatischNakijken;
+package fnt.hu.nl.automatischNakijken.test;
 
 import static org.junit.Assert.*;
 
 import java.io.IOException;
 
+import junit.framework.TestCase;
+
 import org.junit.Test;
 
-import fnt.hu.nl.automatischNakijken.Logic.URIClassLoader;
 import fnt.hu.nl.opdracht.IHelloWorldApp;
+import fnt.hu.nlautomatischNakijken.util.URIClassLoader;
 
-public class IHelloWorldAppTest {
+public class IHelloWorldAppTest extends TestCase{
 
 	@Test
 	public void testMethodA() throws ClassNotFoundException,
@@ -22,7 +24,8 @@ public class IHelloWorldAppTest {
 		
 		//System.out.println(((IHelloWorldApp)kaas.newInstance()).getHello());
 		IHelloWorldApp aapje = ((IHelloWorldApp)kaas.newInstance()); 
-		assertEquals(aapje.getHello(), "Hello World pikkenbaas123");
+		assertEquals(aapje.getHello(), "Hello World pissdbaas123");
+		
 	}
 
 }

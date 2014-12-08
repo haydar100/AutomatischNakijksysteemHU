@@ -1,3 +1,4 @@
+package fnt.hu.nl.automatischNakijken.test;
 /*package fnt.hu.nl.automatischNakijken;
 
 import java.lang.reflect.InvocationTargetException;
