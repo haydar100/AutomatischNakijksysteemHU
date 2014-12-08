@@ -8,21 +8,22 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-import fnt.hu.nl.automatischNakijken.Data.HibernateUtil;
-import fnt.hu.nl.automatischNakijken.Domain.Assignment;
-import fnt.hu.nl.automatischNakijken.Domain.AssignmentCheck;
-import fnt.hu.nl.automatischNakijken.Domain.AssignmentType;
-import fnt.hu.nl.automatischNakijken.Domain.Class;
-import fnt.hu.nl.automatischNakijken.Domain.Course;
-import fnt.hu.nl.automatischNakijken.Domain.CoursePeriod;
-import fnt.hu.nl.automatischNakijken.Domain.Instructor;
-import fnt.hu.nl.automatischNakijken.Domain.Solution;
-import fnt.hu.nl.automatischNakijken.Domain.SolutionRepository;
-import fnt.hu.nl.automatischNakijken.Domain.Student;
-import fnt.hu.nl.automatischNakijken.Domain.TeachingAssistant;
-import fnt.hu.nl.automatischNakijken.Domain.WorkGroup;
+import fnt.hu.nl.automatischNakijken.data.HibernateUtil;
+import fnt.hu.nl.automatischNakijken.domain.Assignment;
+import fnt.hu.nl.automatischNakijken.domain.AssignmentCheck;
+import fnt.hu.nl.automatischNakijken.domain.AssignmentType;
+import fnt.hu.nl.automatischNakijken.domain.Class;
+import fnt.hu.nl.automatischNakijken.domain.Course;
+import fnt.hu.nl.automatischNakijken.domain.CoursePeriod;
+import fnt.hu.nl.automatischNakijken.domain.Instructor;
+import fnt.hu.nl.automatischNakijken.domain.Solution;
+import fnt.hu.nl.automatischNakijken.domain.SolutionRepository;
+import fnt.hu.nl.automatischNakijken.domain.Student;
+import fnt.hu.nl.automatischNakijken.domain.TeachingAssistant;
+import fnt.hu.nl.automatischNakijken.domain.WorkGroup;
 import fnt.hu.nl.automatischNakijken.test.IHelloWorldAppTest;
 import fnt.hu.nl.automatischNakijken.test.JavaConverterTest;
+import fnt.hu.nl.automatischNakijken.util.TestRunner;
 
 /**
  * Main class Automatisch nakijksysteem

@@ -8,8 +8,8 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
+import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
 import fnt.hu.nl.opdracht.IHelloWorldApp;
-import fnt.hu.nlautomatischNakijken.util.URIClassLoader;
 
 public class IHelloWorldAppTest extends TestCase{
 

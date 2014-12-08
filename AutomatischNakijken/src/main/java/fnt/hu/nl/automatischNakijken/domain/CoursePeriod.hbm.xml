@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping package="fnt.hu.nl.automatischNakijken.Domain">
+   <class name="CoursePeriod" table="COURSEPERIOD">
+      <meta attribute="class-description">
+         This class contains the courseperiod details. 
+      </meta>
+      <id name="id" type="int" column="courseperiod_id">
+         <generator class="native"/>
+      </id>
+      <property name="startDate" column="start_date" type="calendar"/>
+      <property name="endDate" column="end_date" type="calendar"/>
+     
+    	<many-to-one name="course" class="Course"  fetch="select">
+    		<column name="course_id" not-null="true"/>
+    	</many-to-one>
+    
+   </class>
+</hibernate-mapping>
