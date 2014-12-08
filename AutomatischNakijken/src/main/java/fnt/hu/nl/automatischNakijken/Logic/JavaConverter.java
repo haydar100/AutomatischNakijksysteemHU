@@ -41,7 +41,7 @@ public class JavaConverter implements SourceCodeConverter{
 		return to;
 	}
 	
-	//This method will remove all unnecessary whitespaces from the original file
+	//This method will fill in the newly created file
 	private void writeNormalisedFile(File originalFile, File fileToNormalise){
 		try{
 			FileReader fr = new FileReader(originalFile.getAbsolutePath()); 
@@ -57,14 +57,14 @@ public class JavaConverter implements SourceCodeConverter{
 			}
 			fileContent = removeCommentBlocksFromContent(fileContent);
 			fileContent = removeImportStatements(fileContent);
-			
 			//Split in lines and execute single line operations
 			String[] lines = fileContent.split("\\n");
 			for(String temp : lines)
 			{
-				temp = removeWhiteSpaces(temp);
-				if(temp != null)
-					fw.write(temp + "\n");
+					temp = removeWhiteSpace(temp);
+					if(!temp.equals(""))
+						fw.write(temp + "\n");
+				
 			}
 			
 			fr.close();
@@ -82,27 +82,19 @@ public class JavaConverter implements SourceCodeConverter{
 		String outputContent = fileContent.replaceAll("import.*;", "");
 		return outputContent;
 	}
-
-	//This method will return a String if it has any content after removing whitespace and null otherwise.
-	private String removeWhiteSpaces(String lineToCheck){
-		lineToCheck.trim();
-		//Only return a string when the line is not empty
-		if(!lineToCheck.matches("\\s*")){
-			String formattedLine = lineToCheck.replaceAll("\t", "");
-			return formattedLine;	
-		}
-		return null;
-	}
-	
-	//This method will normalise variable names to X 
-	private String normaliseVariableNames(String lineToCheck){
-		return null;
-	}
 	
 	//This method removes the comments from a source file 
 	private String removeCommentBlocksFromContent(String inputContent){
 		String outputContent;
 		outputContent = inputContent.replaceAll("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)", "");
 		return outputContent;
+	}
+	
+	//This method removes whitespace from a line
+	private String removeWhiteSpace(String inputContent){
+		String content = "";
+		inputContent.trim();
+		content = inputContent.replaceAll("\t|\n", "");
+		return content;
 	}
 }
