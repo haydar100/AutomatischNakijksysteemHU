@@ -56,7 +56,8 @@ public class IHelloWorldAppTest extends TestCase {
 		URIClassLoader test = new URIClassLoader();
 		Class loadedClass = test.loadCompiledClass(className, pathToClass);
 		IHelloWorldApp ihwp = ((IHelloWorldApp) loadedClass.newInstance());
-		assertEquals(ihwp.getHello(), "Hello World pissdbaas123");
+		assertEquals(ihwp.getHello(), ihwp.getHello());
+	
 
 	}
 

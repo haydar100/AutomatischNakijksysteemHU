@@ -14,9 +14,12 @@ public class TestRunner {
 	
 	public void runClass(Class testClass) {
 		Result result = JUnitCore.runClasses(testClass); 
-		System.out.println(result.getClass());
+		System.out.println("JUnit runner initialized testClass\n" + testClass.getName());
 		for (Failure failure : result.getFailures()) {
 			System.out.println(failure.toString());
+		}
+		if (result.wasSuccessful()) {
+			System.out.println("All tests are passed...");
 		}
 	}
 }
