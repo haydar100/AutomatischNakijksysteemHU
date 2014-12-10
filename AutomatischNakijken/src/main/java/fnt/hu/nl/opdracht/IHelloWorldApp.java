@@ -11,5 +11,7 @@ public interface IHelloWorldApp {
 	 * @param hello the hello to set
 	 */
 	public void setHello(String hello);
+	
+	
 
 }

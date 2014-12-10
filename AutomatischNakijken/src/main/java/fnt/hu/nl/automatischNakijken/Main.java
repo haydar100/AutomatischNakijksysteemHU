@@ -22,6 +22,7 @@ import fnt.hu.nl.automatischNakijken.domain.Student;
 import fnt.hu.nl.automatischNakijken.domain.TeachingAssistant;
 import fnt.hu.nl.automatischNakijken.domain.WorkGroup;
 import fnt.hu.nl.automatischNakijken.test.IHelloWorldAppTest;
+import fnt.hu.nl.automatischNakijken.util.FolderChecker;
 import fnt.hu.nl.automatischNakijken.util.TestRunner;
 import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
 
@@ -35,6 +36,7 @@ public class Main {
 		TestRunner runner = new TestRunner();
 		IHelloWorldAppTest instance = new IHelloWorldAppTest();
 		URIClassLoader UriClassLoader = new URIClassLoader();
+		FolderChecker.removeFilesWithClassExtension("C:\\Users\\Berkan\\Documents\\testfolder\\");
 		UriClassLoader.compileJavaSourceFile("C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldapp.java");
 		instance.setClassName("HelloWorldApp");
 		instance.setPathToClass("C:\\Users\\Berkan\\Documents\\testfolder\\");
