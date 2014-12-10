@@ -2,14 +2,11 @@ package fnt.hu.nl.automatischNakijken;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.junit.runner.JUnitCore;
-import org.junit.runner.Result;
 
 import fnt.hu.nl.automatischNakijken.data.HibernateUtil;
 import fnt.hu.nl.automatischNakijken.domain.Assignment;
@@ -25,8 +22,9 @@ import fnt.hu.nl.automatischNakijken.domain.Student;
 import fnt.hu.nl.automatischNakijken.domain.TeachingAssistant;
 import fnt.hu.nl.automatischNakijken.domain.WorkGroup;
 import fnt.hu.nl.automatischNakijken.test.IHelloWorldAppTest;
-import fnt.hu.nl.automatischNakijken.test.JavaConverterTest;
+import fnt.hu.nl.automatischNakijken.util.FolderChecker;
 import fnt.hu.nl.automatischNakijken.util.TestRunner;
+import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
 
 /**
  * Main class Automatisch nakijksysteem
@@ -35,13 +33,15 @@ import fnt.hu.nl.automatischNakijken.util.TestRunner;
 public class Main {
 
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
-		//setupDatabaseEntities();
 		TestRunner runner = new TestRunner();
 		IHelloWorldAppTest instance = new IHelloWorldAppTest();
+		URIClassLoader UriClassLoader = new URIClassLoader();
+		FolderChecker.removeFilesWithClassExtension("C:\\Users\\Berkan\\Documents\\testfolder\\");
+		UriClassLoader.compileJavaSourceFile("C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldapp.java");
 		instance.setClassName("HelloWorldApp");
-		instance.setPathToClass("C:\\Users\\Berkan\\Desktop\\test\\");
+		instance.setPathToClass("C:\\Users\\Berkan\\Documents\\testfolder\\");
 		runner.runClass(instance.getClass());
-		
+		//setupDatabaseEntities();
 	}
 
 	private static void setupDatabaseEntities() {
