@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,7 +13,8 @@ import java.util.logging.Logger;
 public class JavaConverter implements SourceCodeConverter{
 	private final String _javaExtension = ".java";
 	private final String _newExtension = ".tff";
-	private final Logger logger = Logger.getLogger(JavaConverter.class.getName());
+	private final Logger _logger = Logger.getLogger(JavaConverter.class.getName());
+	private Lexer _lexer = new JavaLexer();
 	
 	//This method will steer the control flow for converting a file to its tokenised form
 	public File convertSourceCode(File originalFile) {
@@ -35,7 +36,7 @@ public class JavaConverter implements SourceCodeConverter{
 			}
 			catch(IOException ioe){
 				ioe.printStackTrace();
-				logger.log(Level.WARNING, "Creating a new file for tokenising failed");
+				_logger.log(Level.WARNING, "Creating a new file for tokenising failed");
 			}
 		}
 		return to;
@@ -57,26 +58,28 @@ public class JavaConverter implements SourceCodeConverter{
 			}
 			fileContent = removeCommentBlocksFromContent(fileContent);
 			fileContent = removeImportStatements(fileContent);
+			fileContent = removePackageName(fileContent);
+			List<Token> tokens = _lexer.tokeniseSourceFile(fileContent);
 			//Split in lines and execute single line operations
-			String[] lines = fileContent.split("\\n");
-			for(String temp : lines)
-			{
-					temp = removeWhiteSpace(temp);
-					if(!temp.equals(""))
-						fw.write(temp + "\n");
-				
+			for(Token token : tokens){
+				fw.write(token.toString() + "\n");
 			}
-			
 			fr.close();
 			br.close();
 			fw.close();
 		}
 		catch(IOException ioe){
 			ioe.printStackTrace();
-			logger.log(Level.WARNING, "Accessing files when tokenising failed");
+			_logger.log(Level.WARNING, "Accessing files when tokenising failed");
 		}
 	}
 	
+	//This method removes the package name from the file
+	private String removePackageName(String fileContent) {
+		String outputContent = fileContent.replaceAll("^package.*;", "");
+		return outputContent;
+	}
+
 	//This method removes import statements from the source file
 	private String removeImportStatements(String fileContent) {
 		String outputContent = fileContent.replaceAll("import.*;", "");
@@ -88,13 +91,5 @@ public class JavaConverter implements SourceCodeConverter{
 		String outputContent;
 		outputContent = inputContent.replaceAll("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)", "");
 		return outputContent;
-	}
-	
-	//This method removes whitespace from a line
-	private String removeWhiteSpace(String inputContent){
-		String content = "";
-		inputContent.trim();
-		content = inputContent.replaceAll("\t|\n", "");
-		return content;
 	}
 }

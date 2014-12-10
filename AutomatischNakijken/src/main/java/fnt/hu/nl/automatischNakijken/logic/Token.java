@@ -10,8 +10,15 @@ public class Token {
 		this.value = value;
 	}
 	
+	public Token(TokenType type){
+		this.type = type;
+		this.value = type.toString();
+	}
+	
 	@Override 
 	public String toString(){
-		return value;
+		if(this.type == TokenType.ATOM)
+			return "X";
+		return value.toUpperCase();
 	}
 }
