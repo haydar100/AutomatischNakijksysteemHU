@@ -6,7 +6,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import net.sf.sanity4j.gen.checkstyle_4_4.Checkstyle;
+import net.sf.sanity4j.workflow.tool.CheckStyleRunner;
+import net.sf.sanity4j.workflow.tool.Pmd5Runner;
+import net.sourceforge.pmd.PMD;
+import net.sourceforge.pmd.PMDException;
+
 import org.hibernate.Session;
+
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 import fnt.hu.nl.automatischNakijken.data.HibernateUtil;
 import fnt.hu.nl.automatischNakijken.domain.Assignment;
@@ -32,14 +40,14 @@ import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
  */
 public class Main {
 
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, PMDException, CheckstyleException {
 		TestRunner runner = new TestRunner();
 		IHelloWorldAppTest instance = new IHelloWorldAppTest();
 		URIClassLoader UriClassLoader = new URIClassLoader();
-		FolderChecker.removeFilesWithClassExtension("C:\\Users\\Berkan\\Documents\\testfolder\\");
-		UriClassLoader.compileJavaSourceFile("C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldapp.java");
+		FolderChecker.removeFilesWithClassExtension("C:\\Users\\Berkan\\Desktop\\test");
+		UriClassLoader.compileJavaSourceFile("C:\\Users\\Berkan\\Desktop\\test\\HelloWorldapp.java");
 		instance.setClassName("HelloWorldApp");
-		instance.setPathToClass("C:\\Users\\Berkan\\Documents\\testfolder\\");
+		instance.setPathToClass("C:\\Users\\Berkan\\Desktop\\test");
 		runner.runClass(instance.getClass());
 		//setupDatabaseEntities();
 	}
