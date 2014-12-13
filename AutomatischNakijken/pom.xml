@@ -8,6 +8,11 @@
   <name>AutomatischNakijken</name>
   <url>http://maven.apache.org</url>
      <dependencies>
+     <dependency>
+	<groupId>org.slf4j</groupId>
+	<artifactId>slf4j-api</artifactId>
+	<version>1.7.7</version>
+</dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -17,11 +22,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>4.2.0.Final</version>
-        </dependency>
-        <dependency>
-        <groupId>net.sf.sanity4j</groupId>
-        <artifactId>sanity4j</artifactId>
-        <version>1.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate.common</groupId>
@@ -46,19 +46,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.4</version>
-        </dependency>
-        <dependency>
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging</artifactId>
             <version>3.1.0.CR2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.6.4</version>
         </dependency>
  
         <dependency>
@@ -84,6 +74,16 @@
   <artifactId>maven-checkstyle-plugin</artifactId>
   <version>2.13</version>
   <type>maven-plugin</type>
+  <exclusions>
+      <exclusion> 
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-jdk14</artifactId>
+      </exclusion>
+       <exclusion> 
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-nop</artifactId>
+      </exclusion>
+    </exclusions> 
 </dependency>
         
        

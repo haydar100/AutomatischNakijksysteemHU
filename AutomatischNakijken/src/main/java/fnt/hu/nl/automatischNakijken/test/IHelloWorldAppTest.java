@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
+import fnt.hu.nl.automatischNakijken.util.CheckStyleRunner;
 import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
 import fnt.hu.nl.opdracht.IHelloWorldApp;
 
@@ -52,7 +53,7 @@ public class IHelloWorldAppTest extends TestCase {
 	public void setPathToClass(String pathToClass) {
 		this.pathToClass = pathToClass;
 	}
-
+	
 	
 	@Test
 	public void testMethodA() throws ClassNotFoundException,
@@ -63,6 +64,7 @@ public class IHelloWorldAppTest extends TestCase {
 		assertEquals(ihwp.getHello(), ihwp.getHello());
 	}
 	
+
 	
 
 

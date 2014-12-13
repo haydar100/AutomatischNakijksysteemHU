@@ -1,16 +1,11 @@
 package fnt.hu.nl.automatischNakijken;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import net.sf.sanity4j.gen.checkstyle_4_4.Checkstyle;
-import net.sf.sanity4j.workflow.tool.CheckStyleRunner;
-import net.sf.sanity4j.workflow.tool.Pmd5Runner;
-import net.sourceforge.pmd.PMD;
-import net.sourceforge.pmd.PMDException;
 
 import org.hibernate.Session;
 
@@ -30,9 +25,11 @@ import fnt.hu.nl.automatischNakijken.domain.Student;
 import fnt.hu.nl.automatischNakijken.domain.TeachingAssistant;
 import fnt.hu.nl.automatischNakijken.domain.WorkGroup;
 import fnt.hu.nl.automatischNakijken.test.IHelloWorldAppTest;
+import fnt.hu.nl.automatischNakijken.util.CheckStyleRunner;
 import fnt.hu.nl.automatischNakijken.util.FolderChecker;
 import fnt.hu.nl.automatischNakijken.util.TestRunner;
 import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
+import fnt.hu.nl.opdracht.IHelloWorldApp;
 
 /**
  * Main class Automatisch nakijksysteem
@@ -40,7 +37,7 @@ import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
  */
 public class Main {
 
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, PMDException, CheckstyleException {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException,  CheckstyleException {
 		TestRunner runner = new TestRunner();
 		IHelloWorldAppTest instance = new IHelloWorldAppTest();
 		URIClassLoader UriClassLoader = new URIClassLoader();
@@ -48,8 +45,23 @@ public class Main {
 		UriClassLoader.compileJavaSourceFile("C:\\Users\\Berkan\\Desktop\\test\\HelloWorldapp.java");
 		instance.setClassName("HelloWorldApp");
 		instance.setPathToClass("C:\\Users\\Berkan\\Desktop\\test");
+		RunCheckStyle();
 		runner.runClass(instance.getClass());
 		//setupDatabaseEntities();
+	}
+	
+	
+	private static void RunCheckStyle() throws FileNotFoundException, CheckstyleException, InstantiationException, IllegalAccessException {
+		URIClassLoader test = new URIClassLoader();
+		java.lang.Class<?> loadedClass = test.loadCompiledClass("HelloWorldApp", "C:\\Users\\Berkan\\Desktop\\test");
+		IHelloWorldApp ihwp = ((IHelloWorldApp) loadedClass.newInstance());
+		CheckStyleRunner.run(ihwp,
+				"C:\\Users\\Berkan\\Desktop\\test",
+				"checkstyle.xml");
+	}
+	
+	private static void RunPMD() {
+		
 	}
 
 	private static void setupDatabaseEntities() {

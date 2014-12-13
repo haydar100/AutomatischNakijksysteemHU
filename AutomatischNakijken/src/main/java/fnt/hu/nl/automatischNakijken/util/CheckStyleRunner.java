@@ -1,4 +1,4 @@
-/*package fnt.hu.nl.automatischNakijken.util;
+package fnt.hu.nl.automatischNakijken.util;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.io.ByteArrayOutputStream;
@@ -28,10 +28,6 @@ public abstract class CheckStyleRunner {
 		System.out.println("Starting Checkstyle on folder '"
 				+ fileFolderToCheck.getAbsolutePath() + "'..");
 
-		
-		 * Validations
-		 
-
 		if (!fileFolderToCheck.exists()) {
 			throw new FileNotFoundException("The folder to check '"
 					+ fileFolderToCheck.getAbsolutePath() + "' does not exist.");
@@ -43,10 +39,6 @@ public abstract class CheckStyleRunner {
 					+ "' is not a directory.");
 		}
 
-		
-		 * Files
-		 
-
 		List<File> files = new ArrayList<File>();
 		listFiles(files, fileFolderToCheck, "java");
 		System.out.println("Found " + files.size() + " Java source files.");
@@ -55,16 +47,8 @@ public abstract class CheckStyleRunner {
 			Assert.fail("Found no Java source files. Configuration error?");
 		}
 
-		
-		 * Listener
-		 
-
 		ByteArrayOutputStream sos = new ByteArrayOutputStream();
 		AuditListener listener = new DefaultLogger(sos, false);
-
-		
-		 * Configuration
-		 
 
 		InputSource inputSource = new InputSource(testClassInstance.getClass()
 				.getResourceAsStream(ruleFileName));
@@ -73,37 +57,18 @@ public abstract class CheckStyleRunner {
 				inputSource, new PropertiesExpander(System.getProperties()),
 				false);
 
-		
-		 * Create checker
-		 
-
 		Checker checker = new Checker();
 		checker.setModuleClassLoader(Checker.class.getClassLoader());
 		checker.configure(configuration);
 		checker.addListener(listener);
 
-		
-		 * Process
-		 
-
 		int errors = checker.process(files);
 		System.out.println("Found " + errors + " check style errors.");
 		System.out.println(sos.toString());
-		Assert.assertTrue(
-				errors + " check style errors found. " + sos.toString(),
-				errors == 0);
-
-		
-		 * Clean up
-		 
 
 		checker.destroy();
 
 	}
-
-	*//**
-	 * Lists all files in a given folder
-	 *//*
 
 	private static void listFiles(final List<File> files, final File folder,
 			final String extension) {
@@ -119,4 +84,3 @@ public abstract class CheckStyleRunner {
 	}
 
 }
-*/
