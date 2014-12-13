@@ -50,7 +50,7 @@ public abstract class CheckStyleRunner {
 		ByteArrayOutputStream sos = new ByteArrayOutputStream();
 		AuditListener listener = new DefaultLogger(sos, false);
 
-		InputSource inputSource = new InputSource(testClassInstance.getClass()
+		InputSource inputSource = new InputSource(testClassInstance.getClass() // needs to be edited so it can actually read the checkstyle.xml from project package.
 				.getResourceAsStream(ruleFileName));
 
 		Configuration configuration = ConfigurationLoader.loadConfiguration(

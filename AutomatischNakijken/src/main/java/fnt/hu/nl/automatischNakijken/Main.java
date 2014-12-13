@@ -37,7 +37,13 @@ import fnt.hu.nl.opdracht.IHelloWorldApp;
  */
 public class Main {
 
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException,  CheckstyleException {
+	public static void main(String[] args) throws FileNotFoundException, InstantiationException, IllegalAccessException, CheckstyleException {
+		runJUnit();
+		runCheckStyle();
+		//setupDatabaseEntities();
+	}
+	
+	private static void runJUnit() {
 		TestRunner runner = new TestRunner();
 		IHelloWorldAppTest instance = new IHelloWorldAppTest();
 		URIClassLoader UriClassLoader = new URIClassLoader();
@@ -45,13 +51,12 @@ public class Main {
 		UriClassLoader.compileJavaSourceFile("C:\\Users\\Berkan\\Desktop\\test\\HelloWorldapp.java");
 		instance.setClassName("HelloWorldApp");
 		instance.setPathToClass("C:\\Users\\Berkan\\Desktop\\test");
-		RunCheckStyle();
 		runner.runClass(instance.getClass());
-		//setupDatabaseEntities();
 	}
 	
 	
-	private static void RunCheckStyle() throws FileNotFoundException, CheckstyleException, InstantiationException, IllegalAccessException {
+	private static void runCheckStyle() throws FileNotFoundException, CheckstyleException, InstantiationException, IllegalAccessException {
+		//http://stackoverflow.com/questions/11916706/slf4j-failed-to-load-class-org-slf4j-impl-staticloggerbinder-error
 		URIClassLoader test = new URIClassLoader();
 		java.lang.Class<?> loadedClass = test.loadCompiledClass("HelloWorldApp", "C:\\Users\\Berkan\\Desktop\\test");
 		IHelloWorldApp ihwp = ((IHelloWorldApp) loadedClass.newInstance());

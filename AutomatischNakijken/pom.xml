@@ -8,11 +8,6 @@
   <name>AutomatischNakijken</name>
   <url>http://maven.apache.org</url>
      <dependencies>
-     <dependency>
-	<groupId>org.slf4j</groupId>
-	<artifactId>slf4j-api</artifactId>
-	<version>1.7.7</version>
-</dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -68,8 +63,8 @@
         	<artifactId>junit</artifactId>
         	<version>4.11</version>
         </dependency>
-        
-        <dependency>
+      
+        <dependency>   
   <groupId>org.apache.maven.plugins</groupId>
   <artifactId>maven-checkstyle-plugin</artifactId>
   <version>2.13</version>
