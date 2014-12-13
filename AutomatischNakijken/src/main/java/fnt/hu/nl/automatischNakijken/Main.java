@@ -1,12 +1,15 @@
 package fnt.hu.nl.automatischNakijken;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Session;
+
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 import fnt.hu.nl.automatischNakijken.data.HibernateUtil;
 import fnt.hu.nl.automatischNakijken.domain.Assignment;
@@ -22,9 +25,11 @@ import fnt.hu.nl.automatischNakijken.domain.Student;
 import fnt.hu.nl.automatischNakijken.domain.TeachingAssistant;
 import fnt.hu.nl.automatischNakijken.domain.WorkGroup;
 import fnt.hu.nl.automatischNakijken.test.IHelloWorldAppTest;
+import fnt.hu.nl.automatischNakijken.util.CheckStyleRunner;
 import fnt.hu.nl.automatischNakijken.util.FolderChecker;
 import fnt.hu.nl.automatischNakijken.util.TestRunner;
 import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
+import fnt.hu.nl.opdracht.IHelloWorldApp;
 
 /**
  * Main class Automatisch nakijksysteem
@@ -32,16 +37,36 @@ import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
  */
 public class Main {
 
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
+	public static void main(String[] args) throws FileNotFoundException, InstantiationException, IllegalAccessException, CheckstyleException {
+		runJUnit();
+		runCheckStyle();
+		//setupDatabaseEntities();
+	}
+	
+	private static void runJUnit() {
 		TestRunner runner = new TestRunner();
 		IHelloWorldAppTest instance = new IHelloWorldAppTest();
 		URIClassLoader UriClassLoader = new URIClassLoader();
-		FolderChecker.removeFilesWithClassExtension("C:\\Users\\Berkan\\Documents\\testfolder\\");
-		UriClassLoader.compileJavaSourceFile("C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldapp.java");
+		FolderChecker.removeFilesWithClassExtension("C:\\Users\\Berkan\\Desktop\\test");
+		UriClassLoader.compileJavaSourceFile("C:\\Users\\Berkan\\Desktop\\test\\HelloWorldapp.java");
 		instance.setClassName("HelloWorldApp");
-		instance.setPathToClass("C:\\Users\\Berkan\\Documents\\testfolder\\");
+		instance.setPathToClass("C:\\Users\\Berkan\\Desktop\\test");
 		runner.runClass(instance.getClass());
-		//setupDatabaseEntities();
+	}
+	
+	
+	private static void runCheckStyle() throws FileNotFoundException, CheckstyleException, InstantiationException, IllegalAccessException {
+		//http://stackoverflow.com/questions/11916706/slf4j-failed-to-load-class-org-slf4j-impl-staticloggerbinder-error
+		URIClassLoader test = new URIClassLoader();
+		java.lang.Class<?> loadedClass = test.loadCompiledClass("HelloWorldApp", "C:\\Users\\Berkan\\Desktop\\test");
+		IHelloWorldApp ihwp = ((IHelloWorldApp) loadedClass.newInstance());
+		CheckStyleRunner.run(ihwp,
+				"C:\\Users\\Berkan\\Desktop\\test",
+				"checkstyle.xml");
+	}
+	
+	private static void RunPMD() {
+		
 	}
 
 	private static void setupDatabaseEntities() {
