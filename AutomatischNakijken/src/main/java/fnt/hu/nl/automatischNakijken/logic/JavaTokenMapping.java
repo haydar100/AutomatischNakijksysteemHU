@@ -43,6 +43,17 @@ public class JavaTokenMapping {
 		wordTokenMap.put("true", TokenType.KW_TRUE);
 		wordTokenMap.put("false", TokenType.KW_FALSE);
 		wordTokenMap.put("char", TokenType.KW_CHAR);
+		wordTokenMap.put("for", TokenType.RW_FOR);
+		wordTokenMap.put("for", TokenType.RW_FOR);
+		wordTokenMap.put("while", TokenType.RW_WHILE);
+		wordTokenMap.put("default", TokenType.RW_DEFAULT);
+		wordTokenMap.put("if", TokenType.RW_IF);
+		wordTokenMap.put("else", TokenType.RW_ELSE);
+		wordTokenMap.put("switch", TokenType.RW_SWITCH);
+		wordTokenMap.put("case", TokenType.RW_CASE);
+		wordTokenMap.put("break", TokenType.RW_BREAK);
+		wordTokenMap.put("static", TokenType.RW_STATIC);
+		wordTokenMap.put("final", TokenType.RW_FINAL);
 	};
 	
 	public static TokenType getCharTokenType(char c){
