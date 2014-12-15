@@ -1,6 +1,6 @@
 package fnt.hu.nl.automatischNakijken.domain;
 
-public class SolutionSimilarity {
+public class SolutionSimilarity implements Comparable<SolutionSimilarity> {
 	private Solution referenceSolution;
 	private Solution subjectSolution;
 	private double similarityPercentage;
@@ -8,6 +8,12 @@ public class SolutionSimilarity {
 	
 	private SolutionSimilarity(){
 		
+	}
+	
+	public SolutionSimilarity(Solution referenceSolution, Solution subjectSolution, double similarityPercentage){
+		this.referenceSolution = referenceSolution;
+		this.subjectSolution = subjectSolution;
+		this.similarityPercentage = similarityPercentage;
 	}
 	
 	public int getId() {
@@ -42,4 +48,17 @@ public class SolutionSimilarity {
 		this.similarityPercentage = similarityPercentage;
 	}
 
+	@Override
+	public int compareTo(SolutionSimilarity otherSimilarity) {
+		Double tempPercentage = new Double(this.similarityPercentage);
+		Double otherPercentage = otherSimilarity.getSimilarityPercentage();
+		return tempPercentage.compareTo(otherPercentage);
+	}
+	
+	public String toString(){
+		if(referenceSolution != null && subjectSolution != null)
+			return "Reference solution with id= " + referenceSolution.getId() + " is " + this.similarityPercentage 
+					+ "% similar to subject solution with id= " + subjectSolution.getId(); 
+		return "" + this.similarityPercentage;
+	}
 }

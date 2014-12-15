@@ -27,6 +27,7 @@ public class PlagiarismDetectorTest {
 		//Arrange
 		String filePath = "/Users/roystraub/Desktop/Class.java";
 		SolutionFile file = new SolutionFile(filePath);
+		
 		List<SolutionFile> files = new ArrayList<SolutionFile>();
 		files.add(file);
 		Solution solution = new Solution(null, null, null,null,null, null, null, files, Calendar.getInstance(), true);
@@ -35,7 +36,7 @@ public class PlagiarismDetectorTest {
 		SolutionRepository repository = new SolutionRepository(null, null, solutions, false, TargetLanguage.Java);
 		PlagiarismDetector detector = new PlagiarismDetector(new JavaConverter(), repository);
 		//Act
-		detector.detectSimilarities();
+		detector.startPlagiarismDetection();
 		//Assert
 		String newPath = filePath.replaceAll("java", "tff");
 	}
