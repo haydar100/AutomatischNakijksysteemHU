@@ -23,6 +23,7 @@ import fnt.hu.nl.automatischNakijken.domain.Instructor;
 import fnt.hu.nl.automatischNakijken.domain.Solution;
 import fnt.hu.nl.automatischNakijken.domain.SolutionRepository;
 import fnt.hu.nl.automatischNakijken.domain.Student;
+import fnt.hu.nl.automatischNakijken.domain.TargetLanguage;
 import fnt.hu.nl.automatischNakijken.domain.TeachingAssistant;
 import fnt.hu.nl.automatischNakijken.domain.WorkGroup;
 import fnt.hu.nl.automatischNakijken.test.IHelloWorldAppTest;
@@ -98,7 +99,7 @@ public class Main {
 		List<Instructor> instructors = new ArrayList<Instructor>();
 		instructors.add(instructor);
 		File f = new File("C:/Users/lol.txt");
-		SolutionRepository sr = new SolutionRepository(null, null, null, true);
+		SolutionRepository sr = new SolutionRepository(null, null, null, true, TargetLanguage.Java);
 		AssignmentType at = new AssignmentType(course, assignments, checks, sr,
 				f, "TestAssignmentType", "Hibernate mapping test");
 

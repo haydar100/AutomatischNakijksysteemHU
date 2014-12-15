@@ -8,17 +8,17 @@ public class SolutionRepository {
 	private Assignment assignment;
 	private List<Solution> solutions;
 	private TargetLanguage targetLanguage;
-	
 	private boolean isActive;
 	
 	
 	public SolutionRepository(List<AssignmentType> assignmentTypes,
-			Assignment assignment, List<Solution> solutions, boolean isActive) {
+			Assignment assignment, List<Solution> solutions, boolean isActive, TargetLanguage language) {
 		super();
 		this.assignmentTypes = assignmentTypes;
 		this.assignment = assignment;
 		this.solutions = solutions;
 		this.isActive = isActive;
+		this.targetLanguage = language;
 	}
 
 	private SolutionRepository() {
@@ -64,4 +64,13 @@ public class SolutionRepository {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
+
+	public TargetLanguage getTargetLanguage() {
+		return targetLanguage;
+	}
+
+	public void setTargetLanguage(TargetLanguage targetLanguage) {
+		this.targetLanguage = targetLanguage;
+	}
+
 }

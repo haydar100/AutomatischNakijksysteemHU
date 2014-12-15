@@ -15,7 +15,7 @@ public class Solution {
 	
 	private WorkGroup group;
 	private List<Student> students;
-	private List<File> files;
+	private List<SolutionFile> files;
 	
 	private Calendar timeOfSubmission;
 	private boolean isCurrent;
@@ -28,7 +28,7 @@ public class Solution {
 			Solution nextVersion, Solution previousVersion,
 			SolutionEvaluation solutionEvaluation,
 			List<SolutionSimilarity> similarities, WorkGroup group,
-			List<Student> students, List<File> files,
+			List<Student> students, List<SolutionFile> files,
 			Calendar timeOfSubmission, boolean isCurrent) {
 		super();
 		
@@ -107,5 +107,12 @@ public class Solution {
 	public void setisCurrent(boolean isCurrent) {
 		this.isCurrent = isCurrent;
 	}
-
+	
+	public List<SolutionFile> getFiles(){
+		return this.files;
+	}
+	
+	public void setFiles(List<SolutionFile> files){
+		this.files = files;
+	}
 }
