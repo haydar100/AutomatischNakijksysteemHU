@@ -1,15 +1,12 @@
 package fnt.hu.nl.automatischNakijken.test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import junit.framework.TestCase;
 
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-
-import fnt.hu.nl.automatischNakijken.util.CheckStyleRunner;
+import fnt.hu.nl.automatischNakijken.util.PMDRunner;
 import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
 import fnt.hu.nl.opdracht.IHelloWorldApp;
 
@@ -53,6 +50,8 @@ public class IHelloWorldAppTest extends TestCase {
 	public void setPathToClass(String pathToClass) {
 		this.pathToClass = pathToClass;
 	}
+	
+	
 	
 	
 	@Test

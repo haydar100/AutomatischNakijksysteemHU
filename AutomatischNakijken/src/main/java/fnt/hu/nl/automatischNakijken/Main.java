@@ -3,6 +3,7 @@ package fnt.hu.nl.automatischNakijken;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -27,6 +28,7 @@ import fnt.hu.nl.automatischNakijken.domain.WorkGroup;
 import fnt.hu.nl.automatischNakijken.test.IHelloWorldAppTest;
 import fnt.hu.nl.automatischNakijken.util.CheckStyleRunner;
 import fnt.hu.nl.automatischNakijken.util.FolderChecker;
+import fnt.hu.nl.automatischNakijken.util.PMDRunner;
 import fnt.hu.nl.automatischNakijken.util.TestRunner;
 import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
 import fnt.hu.nl.opdracht.IHelloWorldApp;
@@ -37,9 +39,11 @@ import fnt.hu.nl.opdracht.IHelloWorldApp;
  */
 public class Main {
 
-	public static void main(String[] args) throws FileNotFoundException, InstantiationException, IllegalAccessException, CheckstyleException {
+	public static void main(String[] args) throws InstantiationException, IllegalAccessException, CheckstyleException, IOException, URISyntaxException {
 		runJUnit();
 		runCheckStyle();
+		PMDRunner.callPmd();
+		//RunPMD();
 		//setupDatabaseEntities();
 	}
 	
@@ -65,9 +69,14 @@ public class Main {
 				"checkstyle.xml");
 	}
 	
-	private static void RunPMD() {
-		
-	}
+	/*private static void RunPMD() throws InstantiationException, IllegalAccessException, IOException, URISyntaxException {
+		URIClassLoader test = new URIClassLoader();
+		java.lang.Class<?> loadedClass = test.loadCompiledClass("HelloWorldApp", "C:\\Users\\Berkan\\Desktop\\test");
+		IHelloWorldApp ihwp = ((IHelloWorldApp) loadedClass.newInstance());
+		PMDRunner.run(ihwp,
+				"C:\\Users\\Berkan\\Desktop\\test",
+				"pmd.xml");
+	}*/
 
 	private static void setupDatabaseEntities() {
 
