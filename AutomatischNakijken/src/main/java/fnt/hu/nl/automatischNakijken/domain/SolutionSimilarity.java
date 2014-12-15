@@ -55,10 +55,21 @@ public class SolutionSimilarity implements Comparable<SolutionSimilarity> {
 		return tempPercentage.compareTo(otherPercentage);
 	}
 	
+	@Override
+	public boolean equals(Object obj){
+		SolutionSimilarity otherSimilarity = (SolutionSimilarity)obj;
+		//If the inverted check has taken place this one is redundant
+		if(this.referenceSolution == otherSimilarity.subjectSolution && this.subjectSolution == otherSimilarity.referenceSolution){
+			return true;	
+		}
+		return false;	
+	}
+	
+	@Override
 	public String toString(){
 		if(referenceSolution != null && subjectSolution != null)
-			return "Reference solution with id= " + referenceSolution.getId() + " is " + this.similarityPercentage 
-					+ "% similar to subject solution with id= " + subjectSolution.getId(); 
+			return "Reference solution from student " + referenceSolution.getStudents().get(0) + " is " + this.similarityPercentage 
+					+ "% similar to subject solution with student " + subjectSolution.getStudents().get(0); 
 		return "" + this.similarityPercentage;
 	}
 }

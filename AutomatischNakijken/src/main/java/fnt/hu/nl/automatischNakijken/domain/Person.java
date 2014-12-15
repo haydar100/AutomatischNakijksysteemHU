@@ -3,7 +3,21 @@ package fnt.hu.nl.automatischNakijken.domain;
 public abstract class Person {
 	private int id;
 	private String firstName;
+	private String surName;
+	private String fullName;
+	private String email;
 	
+	public Person(String first, String sur, String full, String email){
+		this.firstName = first;
+		this.surName = sur;
+		this.fullName = full;
+		this.email = email;
+	}
+	
+	//Hibernate required constructor
+	protected Person(){
+		
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -43,20 +57,9 @@ public abstract class Person {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	private String surName;
-	private String fullName;
-	private String email;
 	
-	public Person(String first, String sur, String full, String email){
-		this.firstName = first;
-		this.surName = sur;
-		this.fullName = full;
-		this.email = email;
-	}
-	
-	//Hibernate required constructor
-	protected Person(){
-		
+	@Override 
+	public String toString(){
+		return this.fullName;
 	}
 }

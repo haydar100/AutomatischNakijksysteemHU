@@ -3,6 +3,8 @@ package fnt.hu.nl.automatischNakijken.logic;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import edu.emory.mathcs.backport.java.util.Collections;
 import fnt.hu.nl.automatischNakijken.domain.*;
@@ -21,6 +23,7 @@ public class PlagiarismDetector {
 		prepareSolutions(_repository.getSolutions());
 		List<SolutionSimilarity> results = detectSimilarities();
 		this._sortedSimilarities = sortSimilarities(results);
+		System.out.println(_sortedSimilarities);
 	}
 	
 	//Tokenise all the solutions and all of their underlying files
@@ -35,22 +38,39 @@ public class PlagiarismDetector {
 	//Run detection on all the files
 	private List<SolutionSimilarity> detectSimilarities(){
 		List<SolutionSimilarity> results = new ArrayList<SolutionSimilarity>();
-		//TODO
-		//Loop over all solutions and then loop over all other solutions.
-		//Keep a list with possible combinations?
-		for(Solution referenceSolution : _repository.getSolutions()){
-			for(SolutionFile file : referenceSolution.getFiles()){
-				//Remove combination from possible combinations
-				//Compare the files and add to a cumulative score.
-				double similarityPercentage = 0.0;
-				Solution subjectSolution = null;
-				SolutionSimilarity similarity = new SolutionSimilarity(referenceSolution, subjectSolution, similarityPercentage);
-				results.add(similarity); 
+		List<Solution> repositorySolutions = _repository.getSolutions();
+		
+		//Loop over all solutions and for each solution loop over all other solutions.
+		for(Solution referenceSolution : repositorySolutions){
+			for(Solution subjectSolution : repositorySolutions){
+				if(referenceSolution != subjectSolution){
+					SolutionSimilarity similarity = new SolutionSimilarity(referenceSolution, subjectSolution, 0.0);
+					//Skip comparison if the combination has been inspected
+					if(!results.contains(similarity)){
+						
+						//Compare all files of each solution
+						for(SolutionFile referenceFile : referenceSolution.getFiles()){
+							for(SolutionFile subjectFile : subjectSolution.getFiles()){
+								//Compare the files and add to a cumulative score.
+								//TODO
+								double fileSimilarity = calculateFileSimilarity(referenceFile, subjectFile);				
+							}
+						}
+						double similarityPercentage = calculateSolutionSimilarity();
+						similarity.setSimilarityPercentage(similarityPercentage);
+						results.add(similarity); 
+					}
+				}
 			}
 		}
 		return results;
 	}
 		
+	private double calculateSolutionSimilarity() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	//Sorts the similarities in descending order
 	private List<SolutionSimilarity> sortSimilarities(List<SolutionSimilarity> results) {
 		Collections.sort(results, Collections.reverseOrder());
