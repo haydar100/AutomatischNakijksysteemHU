@@ -7,6 +7,7 @@ public class SolutionRepository {
 	private List<AssignmentType> assignmentTypes;
 	private Assignment assignment;
 	private List<Solution> solutions;
+	private TargetLanguage targetLanguage;
 	
 	private boolean isActive;
 	

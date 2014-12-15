@@ -12,6 +12,14 @@
 	       <generator class="native"/>
 	    </id>
 	    
+	    
+	      <property name="targetLanguage" column="targetLanguage">
+	    	<type name="org.hibernate.type.EnumType">
+	    	<param name="enumClass">fnt.hu.nl.automatischNakijken.Domain.TargetLanguage</param>
+	    	<param name="type">12</param>
+	    	</type>
+	    </property>
+	    
 	   <!--   <bag name="solutions" table="SOLUTIONREPOSITORY_SOLUTIONS" lazy="true" fetch="select" inverse="true">
       	<key>
       		<column name="solution_id" not-null="true"/>
