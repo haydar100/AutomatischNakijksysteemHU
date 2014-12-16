@@ -5,6 +5,7 @@ import java.io.File;
 public class SolutionFile extends File {
 	private int id;
 	private String filePath;
+	private File tokenisedFile;
 	
 	private SolutionFile(){
 		super("");
@@ -30,4 +31,13 @@ public class SolutionFile extends File {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
+	
+	public File getTokenisedFile() {
+		return tokenisedFile;
+	}
+
+	public void setTokenisedFile(File tokenisedFile) {
+		this.tokenisedFile = tokenisedFile;
+	}
+
 }
