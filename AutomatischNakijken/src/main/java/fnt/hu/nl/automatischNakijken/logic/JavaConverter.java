@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import fnt.hu.nl.automatischNakijken.util.FileUtil;
+
 //This class will transform a Java source file to a tokenised form
 public class JavaConverter implements SourceCodeConverter{
 	private final String _javaExtension = ".java";
@@ -44,34 +46,16 @@ public class JavaConverter implements SourceCodeConverter{
 	
 	//This method will fill in the newly created file
 	private void writeNormalisedFile(File originalFile, File fileToNormalise){
-		try{
-			FileReader fr = new FileReader(originalFile.getAbsolutePath()); 
-			BufferedReader br = new BufferedReader(fr); 
-			FileWriter fw = new FileWriter(fileToNormalise.getAbsolutePath()); 
-			
-			String line;
-			String fileContent = "";
-			//Build string representation to check for multiline operations 
-			while((line = br.readLine()) != null)
-			{ 
-				fileContent += line +"\n";
-			}
-			fileContent = removeCommentBlocksFromContent(fileContent);
-			fileContent = removeImportStatements(fileContent);
-			fileContent = removePackageName(fileContent);
-			List<Token> tokens = _lexer.tokeniseSourceFile(fileContent);
-			//Split in lines and execute single line operations
-			for(Token token : tokens){
-				fw.write(token.toString() + "\n");
-			}
-			fr.close();
-			br.close();
-			fw.close();
-		}
-		catch(IOException ioe){
-			ioe.printStackTrace();
-			_logger.log(Level.WARNING, "Accessing files when tokenising failed");
-		}
+		String fileContent = FileUtil.getContentFromFile(originalFile);
+		fileContent = removeCommentBlocksFromContent(fileContent);
+		fileContent = removeImportStatements(fileContent);
+		fileContent = removePackageName(fileContent);
+		List<Token> tokens = _lexer.tokeniseSourceFile(fileContent);
+		String resultContent = "";
+		//Split in lines 
+		for(Token token : tokens)
+			resultContent += token.toString() + "\n";
+		FileUtil.writeContentToFile(fileToNormalise, resultContent);
 	}
 	
 	//This method removes the package name from the file

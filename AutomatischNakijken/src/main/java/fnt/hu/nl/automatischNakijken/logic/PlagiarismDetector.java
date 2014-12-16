@@ -47,7 +47,6 @@ public class PlagiarismDetector {
 					SolutionSimilarity similarity = new SolutionSimilarity(referenceSolution, subjectSolution, 0.0);
 					//Skip comparison if the combination has been inspected
 					if(!results.contains(similarity)){
-						
 						//Compare all files of each solution
 						for(SolutionFile referenceFile : referenceSolution.getFiles()){
 							for(SolutionFile subjectFile : subjectSolution.getFiles()){
@@ -78,6 +77,9 @@ public class PlagiarismDetector {
 	}
 	
 	private double calculateFileSimilarity(File reference, File subject){
+		String referenceContent;
+		String subjectContent;
+		
 		return 0.0;
 	}
 }
