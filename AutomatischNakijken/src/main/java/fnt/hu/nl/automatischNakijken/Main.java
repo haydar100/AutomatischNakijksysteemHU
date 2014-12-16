@@ -75,7 +75,7 @@ public class Main {
 	}
 
 	
-	private static void runPMD() {
+	private static void runPMD() throws IOException {
 		PMDRunner.callPmd("C:/Users/Berkan/Desktop/test/HelloWorldApp.java");
 
 	}
