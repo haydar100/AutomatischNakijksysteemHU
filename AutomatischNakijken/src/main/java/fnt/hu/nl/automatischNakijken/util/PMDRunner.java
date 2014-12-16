@@ -3,13 +3,15 @@ package fnt.hu.nl.automatischNakijken.util;
 import net.sourceforge.pmd.PMD;
 
 public class PMDRunner {
+	String codeToCheck;
+	String customRuleSet;
 
-	public static void callPmd() {
+	public static void callPmd(String codeToCheck) {
 
-		String checkThisCode = "C:/Users/Berkan/Desktop/test/HelloWorldApp.java";
-		String customRuleSet = "rulesets/internal/all-java.xml";
-		String[] args = {"-d", checkThisCode, "-rulesets",
-				customRuleSet };
+		//String checkThisCode = "C:/Users/Berkan/Desktop/test/HelloWorldApp.java";
+		String RuleSet = "rulesets/internal/all-java.xml";
+		String[] args = {"-d", codeToCheck, "-rulesets",
+				RuleSet };
 		PMD.run(args);
 		
 	}

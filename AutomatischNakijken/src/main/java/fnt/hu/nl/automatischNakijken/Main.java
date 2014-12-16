@@ -40,45 +40,46 @@ import fnt.hu.nl.opdracht.IHelloWorldApp;
  */
 public class Main {
 
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException, CheckstyleException, IOException, URISyntaxException {
+	public static void main(String[] args) throws InstantiationException,
+			IllegalAccessException, CheckstyleException, IOException,
+			URISyntaxException {
 		runJUnit();
 		runCheckStyle();
-		PMDRunner.callPmd();
-		//RunPMD();
-		//setupDatabaseEntities();
+		runPMD();
+		// RunPMD();
+		// setupDatabaseEntities();
 	}
-	
+
 	private static void runJUnit() {
 		TestRunner runner = new TestRunner();
 		IHelloWorldAppTest instance = new IHelloWorldAppTest();
 		URIClassLoader UriClassLoader = new URIClassLoader();
-		FolderChecker.removeFilesWithClassExtension("C:\\Users\\Berkan\\Desktop\\test");
-		UriClassLoader.compileJavaSourceFile("C:\\Users\\Berkan\\Desktop\\test\\HelloWorldapp.java");
+		FolderChecker
+				.removeFilesWithClassExtension("C:\\Users\\Berkan\\Desktop\\test");
+		UriClassLoader
+				.compileJavaSourceFile("C:\\Users\\Berkan\\Desktop\\test\\HelloWorldapp.java");
 		instance.setClassName("HelloWorldApp");
 		instance.setPathToClass("C:\\Users\\Berkan\\Desktop\\test");
 		runner.runClass(instance.getClass());
 	}
-	
-	
-	private static void runCheckStyle() throws FileNotFoundException, CheckstyleException, InstantiationException, IllegalAccessException {
-		//http://stackoverflow.com/questions/11916706/slf4j-failed-to-load-class-org-slf4j-impl-staticloggerbinder-error
+
+	private static void runCheckStyle() throws FileNotFoundException,
+			CheckstyleException, InstantiationException, IllegalAccessException {
+		// http://stackoverflow.com/questions/11916706/slf4j-failed-to-load-class-org-slf4j-impl-staticloggerbinder-error
 		URIClassLoader test = new URIClassLoader();
-		java.lang.Class<?> loadedClass = test.loadCompiledClass("HelloWorldApp", "C:\\Users\\Berkan\\Desktop\\test");
+		java.lang.Class<?> loadedClass = test.loadCompiledClass(
+				"HelloWorldApp", "C:\\Users\\Berkan\\Desktop\\test");
 		IHelloWorldApp ihwp = ((IHelloWorldApp) loadedClass.newInstance());
-		CheckStyleRunner.run(ihwp,
-				"C:\\Users\\Berkan\\Desktop\\test",
+		CheckStyleRunner.run(ihwp, "C:\\Users\\Berkan\\Desktop\\test",
 				"checkstyle.xml");
 	}
-	
-	/*private static void RunPMD() throws InstantiationException, IllegalAccessException, IOException, URISyntaxException {
-		URIClassLoader test = new URIClassLoader();
-		java.lang.Class<?> loadedClass = test.loadCompiledClass("HelloWorldApp", "C:\\Users\\Berkan\\Desktop\\test");
-		IHelloWorldApp ihwp = ((IHelloWorldApp) loadedClass.newInstance());
-		PMDRunner.run(ihwp,
-				"C:\\Users\\Berkan\\Desktop\\test",
-				"pmd.xml");
-	}*/
 
+	
+	private static void runPMD() {
+		PMDRunner.callPmd("C:/Users/Berkan/Desktop/test/HelloWorldApp.java");
+
+	}
+	 
 	private static void setupDatabaseEntities() {
 
 		ArrayList<Solution> solutions = new ArrayList<Solution>();
@@ -99,7 +100,8 @@ public class Main {
 		List<Instructor> instructors = new ArrayList<Instructor>();
 		instructors.add(instructor);
 		File f = new File("C:/Users/lol.txt");
-		SolutionRepository sr = new SolutionRepository(null, null, null, true, TargetLanguage.Java);
+		SolutionRepository sr = new SolutionRepository(null, null, null, true,
+				TargetLanguage.Java);
 		AssignmentType at = new AssignmentType(course, assignments, checks, sr,
 				f, "TestAssignmentType", "Hibernate mapping test");
 
