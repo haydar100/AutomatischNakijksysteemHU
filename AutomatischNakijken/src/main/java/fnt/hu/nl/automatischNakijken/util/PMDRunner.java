@@ -30,13 +30,15 @@ public class PMDRunner {
 																	// output
 		List<String> rowsOut = new ArrayList<String>();
 		for (String line : linesOut) {
-			if (!line.isEmpty() && line.indexOf("Annotation suppressed") == -1
-					&& line.indexOf("No problems found") == -1
-					&& line.indexOf("Error") == -1) {
+			if (!line.isEmpty()
+					&& line.indexOf("Removed misconfigured rule") == -1 // remove the package warning it is not an error that should be counted
+					&& line.indexOf("suppressed by Annotation") == -1
+					&& line.indexOf("No problems found!") == -1
+					&& line.indexOf("Error while processing") == -1) {
 				rowsOut.add(line);
 			}
 		}
-		System.out.println("Found " + rowsOut.size() + " errors");
+		System.out.println("Found " + rowsOut.size() + " errors in " + codeToCheck );
 		for (String error : rowsOut) {
 			System.out.println(error);
 		}
