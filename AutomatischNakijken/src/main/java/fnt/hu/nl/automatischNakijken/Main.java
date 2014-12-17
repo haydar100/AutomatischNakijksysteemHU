@@ -3,6 +3,7 @@ package fnt.hu.nl.automatischNakijken;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,6 +17,7 @@ import fnt.hu.nl.automatischNakijken.data.HibernateUtil;
 import fnt.hu.nl.automatischNakijken.domain.Assignment;
 import fnt.hu.nl.automatischNakijken.domain.AssignmentCheck;
 import fnt.hu.nl.automatischNakijken.domain.AssignmentType;
+import fnt.hu.nl.automatischNakijken.domain.AutomaticCheck;
 import fnt.hu.nl.automatischNakijken.domain.Class;
 import fnt.hu.nl.automatischNakijken.domain.Course;
 import fnt.hu.nl.automatischNakijken.domain.CoursePeriod;
@@ -30,6 +32,7 @@ import fnt.hu.nl.automatischNakijken.test.IHelloWorldAppTest;
 import fnt.hu.nl.automatischNakijken.util.CheckStyleRunner;
 import fnt.hu.nl.automatischNakijken.util.FolderChecker;
 import fnt.hu.nl.automatischNakijken.util.PMDRunner;
+import fnt.hu.nl.automatischNakijken.util.ReflectionUtil;
 import fnt.hu.nl.automatischNakijken.util.TestRunner;
 import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
 import fnt.hu.nl.opdracht.IHelloWorldApp;
@@ -39,7 +42,7 @@ import fnt.hu.nl.opdracht.IHelloWorldApp;
  * 
  */
 public class Main {
-
+	
 	public static void main(String[] args) throws InstantiationException,
 			IllegalAccessException, CheckstyleException, IOException,
 			URISyntaxException {
@@ -49,18 +52,23 @@ public class Main {
 		// RunPMD();
 		// setupDatabaseEntities();
 	}
+	
+	private static void reflectionTest() {
+		
+	}
 
 	private static void runJUnit() {
 		TestRunner runner = new TestRunner();
 		IHelloWorldAppTest instance = new IHelloWorldAppTest();
 		URIClassLoader UriClassLoader = new URIClassLoader();
 		FolderChecker
-				.removeFilesWithClassExtension("C:\\Users\\Berkan\\Desktop\\test");
+				.removeFilesWithClassExtension("C:\\Users\\Berkan\\Documents\\testfolder\\");
 		UriClassLoader
-				.compileJavaSourceFile("C:\\Users\\Berkan\\Desktop\\test\\HelloWorldapp.java");
+				.compileJavaSourceFile("C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldApp.java");
 		instance.setClassName("HelloWorldApp");
-		instance.setPathToClass("C:\\Users\\Berkan\\Desktop\\test");
+		instance.setPathToClass("C:\\Users\\Berkan\\Documents\\testfolder\\");
 		runner.runClass(instance.getClass());
+	
 	}
 
 	private static void runCheckStyle() throws FileNotFoundException,
@@ -68,18 +76,19 @@ public class Main {
 		// http://stackoverflow.com/questions/11916706/slf4j-failed-to-load-class-org-slf4j-impl-staticloggerbinder-error
 		URIClassLoader test = new URIClassLoader();
 		java.lang.Class<?> loadedClass = test.loadCompiledClass(
-				"HelloWorldApp", "C:\\Users\\Berkan\\Desktop\\test");
+				"HelloWorldApp", "C:\\Users\\Berkan\\Documents\\testfolder\\");
 		IHelloWorldApp ihwp = ((IHelloWorldApp) loadedClass.newInstance());
-		CheckStyleRunner.run(ihwp, "C:\\Users\\Berkan\\Desktop\\test",
+		CheckStyleRunner csr = new CheckStyleRunner("CheckStyle", true);
+		csr.run(ihwp, "C:\\Users\\Berkan\\Documents\\testfolder\\",
 				"checkstyle.xml");
 	}
 
-	
 	private static void runPMD() throws IOException {
-		PMDRunner.callPmd("C:/Users/Berkan/Desktop/test/HelloWorldApp.java");
+		PMDRunner pmd = new PMDRunner("PMD", true);
+		pmd.callPmd("C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldApp.java");
 
 	}
-	 
+
 	private static void setupDatabaseEntities() {
 
 		ArrayList<Solution> solutions = new ArrayList<Solution>();

@@ -61,6 +61,7 @@ public class IHelloWorldAppTest extends TestCase {
 		Class loadedClass = test.loadCompiledClass(className, pathToClass);
 		IHelloWorldApp ihwp = ((IHelloWorldApp) loadedClass.newInstance());
 		assertEquals(ihwp.getHello(), ihwp.getHello());
+		
 	}
 	
 
