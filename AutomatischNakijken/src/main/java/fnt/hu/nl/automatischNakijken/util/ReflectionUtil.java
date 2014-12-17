@@ -19,14 +19,19 @@ public class ReflectionUtil {
 		this.blueprint = blueprint;
 	}
 
-	public List<Method> getMethodsFromBluePrint() {
+	public List<String> getMethodsNamesFromBluePrint() {
 		return blueprint.getMethods();
 	}
+	
+	public static String getNameOfMethodObj(Method method) {
+		return method.getName();
+	}
 
-	public List<Method> getMethodsFromInstance() {
-		List<Method> allMethods = new ArrayList<Method>();
+	public List<String> getMethodsFromInstance() {
+		List<String> allMethods = new ArrayList<String>();
 		for (Method m : clazz.getDeclaredMethods()) {
-			allMethods.add(m);
+			String name = m.getName();
+			allMethods.add(name);
 		}
 		return allMethods;
 	}
@@ -37,17 +42,19 @@ public class ReflectionUtil {
 		}
 		return false;
 	}
+	
 
-	public static boolean compareMethodLists(List<Method> methodsFromBluePrint,
-			List<Method> methodsFromInstance) {
+
+	public static boolean compareMethodLists(List<String> methodsFromBluePrint,
+			List<String> methodsFromInstance) {
 		if (methodsFromBluePrint == null && methodsFromInstance == null)
 			return true;
 		if (methodsFromBluePrint != null && methodsFromInstance != null) {
 			if (methodsFromBluePrint.size() == methodsFromInstance.size()) {
-				for (Method m : methodsFromBluePrint) {
+				for (String s : methodsFromBluePrint) {
 					boolean isEqual = false;
-					for (Method m1 : methodsFromInstance) {
-						if (m.equals(m1)) {
+					for (String s1 : methodsFromInstance) {
+						if (s.equals(s1)) {
 							isEqual = true;
 							break;
 						}

@@ -6,9 +6,9 @@ import java.util.List;
 
 public class ClassBluePrint {
 	public String className;
-	public List<Method> methods = new ArrayList<Method>();
+	public List<String> methods = new ArrayList<String>();
 
-	public ClassBluePrint(String className, List<Method> methods) {
+	public ClassBluePrint(String className, List<String> methods) {
 		super();
 		this.className = className;
 		this.methods = methods;
@@ -22,11 +22,11 @@ public class ClassBluePrint {
 		this.className = className;
 	}
 
-	public List<Method> getMethods() {
+	public List<String> getMethods() {
 		return methods;
 	}
 
-	public void setMethods(List<Method> methods) {
+	public void setMethods(List<String> methods) {
 		this.methods = methods;
 	}
 
