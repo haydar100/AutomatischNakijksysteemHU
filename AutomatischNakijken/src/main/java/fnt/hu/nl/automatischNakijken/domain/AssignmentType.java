@@ -7,6 +7,7 @@ public class AssignmentType {
 	private int id;
 	private Course course;
 	private List<Assignment> assignments;
+	private List<ClassBluePrint> blueprints;
 	private List<AssignmentCheck> checks;
 	private SolutionRepository solutionRepository;
 	private File testTemplate;
@@ -97,6 +98,18 @@ public class AssignmentType {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	/**
+	 * @return the blueprints
+	 */
+	public List<ClassBluePrint> getBlueprints() {
+		return blueprints;
+	}
+	/**
+	 * @param blueprints the blueprints to set
+	 */
+	public void setBlueprints(List<ClassBluePrint> blueprints) {
+		this.blueprints = blueprints;
 	}
 
 	
