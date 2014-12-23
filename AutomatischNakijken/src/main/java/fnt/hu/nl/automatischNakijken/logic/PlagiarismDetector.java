@@ -88,6 +88,6 @@ public class PlagiarismDetector {
 		String referenceContent = FileUtil.getContentFromFile(reference);
 		String subjectContent = FileUtil.getContentFromFile(subject);
 		
-		return StringSimilarityUtil.calculateSimilarityPercentage(referenceContent, subjectContent, _sensitivity);
+		return StringSimilarityUtil.calculateSimilarityPercentage(referenceContent, subjectContent);
 	}
 }
