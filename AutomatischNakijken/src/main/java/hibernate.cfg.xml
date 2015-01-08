@@ -7,22 +7,23 @@
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/automatischNakijkenDB</property>
         <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
-        <mapping resource="fnt/hu/nl/automatischNakijken/Domain/Course.hbm.xml"/>
-        <mapping resource="fnt/hu/nl/automatischNakijken/Domain/CoursePeriod.hbm.xml"/>
-   		<mapping resource="fnt/hu/nl/automatischNakijken/Domain/Class.hbm.xml"/>
-   		<mapping resource="fnt/hu/nl/automatischNakijken/Domain/WorkGroup.hbm.xml"/>
+        <mapping resource="fnt/hu/nl/automatischNakijken/domain/Course.hbm.xml"/>
+        <mapping resource="fnt/hu/nl/automatischNakijken/domain/CoursePeriod.hbm.xml"/>
+   		<mapping resource="fnt/hu/nl/automatischNakijken/domain/Class.hbm.xml"/>
+   		<mapping resource="fnt/hu/nl/automatischNakijken/domain/WorkGroup.hbm.xml"/>
    		<!-- <mapping resource="fnt/hu/nl/automatischNakijken/Domain/Instructor.hbm.xml"/> -->
-    	<mapping resource="fnt/hu/nl/automatischNakijken/Domain/SolutionEvaluation.hbm.xml"/>
+    	<mapping resource="fnt/hu/nl/automatischNakijken/domain/SolutionEvaluation.hbm.xml"/>
     	<!-- <mapping resource="fnt/hu/nl/automatischNakijken/Domain/TeachingAssistant.hbm.xml"/> -->
     	<!-- <mapping resource="fnt/hu/nl/automatischNakijken/Domain/Student.hbm.xml"/> -->
-    	<mapping resource="fnt/hu/nl/automatischNakijken/Domain/Assignment.hbm.xml"/>
-    	<mapping resource="fnt/hu/nl/automatischNakijken/Domain/AssignmentType.hbm.xml"/>
-    	<mapping resource="fnt/hu/nl/automatischNakijken/Domain/SolutionRepository.hbm.xml"/>
-    	<mapping resource="fnt/hu/nl/automatischNakijken/Domain/Solution.hbm.xml"/>
-    	<mapping resource="fnt/hu/nl/automatischNakijken/Domain/SolutionEvaluationCriteria.hbm.xml"/>
-    	<mapping resource="fnt/hu/nl/automatischNakijken/Domain/SolutionSimilarity.hbm.xml"/>
-    	<mapping resource="fnt/hu/nl/automatischNakijken/Domain/Person.hbm.xml"/>
+    	<mapping resource="fnt/hu/nl/automatischNakijken/domain/Assignment.hbm.xml"/>
+    	<mapping resource="fnt/hu/nl/automatischNakijken/domain/AssignmentType.hbm.xml"/>
+    	<mapping resource="fnt/hu/nl/automatischNakijken/domain/SolutionRepository.hbm.xml"/>
+    	<mapping resource="fnt/hu/nl/automatischNakijken/domain/Solution.hbm.xml"/>
+    	<mapping resource="fnt/hu/nl/automatischNakijken/domain/SolutionEvaluationCriteria.hbm.xml"/>
+    	<mapping resource="fnt/hu/nl/automatischNakijken/domain/SolutionSimilarity.hbm.xml"/>
+    	<mapping resource="fnt/hu/nl/automatischNakijken/domain/Person.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
