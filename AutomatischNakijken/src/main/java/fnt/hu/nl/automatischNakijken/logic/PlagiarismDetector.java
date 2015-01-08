@@ -15,7 +15,6 @@ public class PlagiarismDetector {
 	private SourceCodeConverter _converter;
 	private SolutionRepository _repository;
 	private List<SolutionSimilarity> _sortedSimilarities;
-	private int _sensitivity = 3;
 	
 	public PlagiarismDetector(SourceCodeConverter converter, SolutionRepository repository){
 		this._converter = converter;
@@ -62,6 +61,9 @@ public class PlagiarismDetector {
 						double similarityPercentage = calculateSolutionSimilarity(fileSimilarities);
 						similarity.setSimilarityPercentage(similarityPercentage);
 						results.add(similarity); 
+						//Save the comparison in the referencesolution and subsequently the inverse in the subject
+						referenceSolution.addSimilarity(similarity);
+						
 					}
 				}
 			}
