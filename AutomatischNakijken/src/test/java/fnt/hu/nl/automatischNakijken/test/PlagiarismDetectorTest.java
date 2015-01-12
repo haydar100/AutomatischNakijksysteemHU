@@ -49,7 +49,7 @@ public class PlagiarismDetectorTest {
 		solutions.add(solution2);
 		solutions.add(solution3);
 		SolutionRepository repository = new SolutionRepository(null, null, solutions, false, TargetLanguage.Java);
-		PlagiarismDetector detector = new PlagiarismDetector(new JavaConverter(), repository);
+		PlagiarismDetector detector = new PlagiarismDetector(new JavaConverter(TargetLanguage.Java), repository);
 		//Act
 		DetectionResult result = detector.startPlagiarismDetection();
 		//Assert
