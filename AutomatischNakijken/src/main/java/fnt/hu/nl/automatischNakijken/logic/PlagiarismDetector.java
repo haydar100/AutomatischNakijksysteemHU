@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.apache.commons.lang3.time.StopWatch;
+
 import edu.emory.mathcs.backport.java.util.Collections;
 import fnt.hu.nl.automatischNakijken.domain.*;
 import fnt.hu.nl.automatischNakijken.util.FileUtil;
@@ -14,18 +16,25 @@ import fnt.hu.nl.automatischNakijken.util.StringSimilarityUtil;
 public class PlagiarismDetector {
 	private SourceCodeConverter _converter;
 	private SolutionRepository _repository;
-	private List<SolutionSimilarity> _sortedSimilarities;
 	
 	public PlagiarismDetector(SourceCodeConverter converter, SolutionRepository repository){
 		this._converter = converter;
 		this._repository = repository;
 	}
 	
-	public void startPlagiarismDetection(){
+	public DetectionResult startPlagiarismDetection(){
+		DetectionResult result = new DetectionResult();
+		result.setSolutionCount(_repository.getSolutions().size());
+		StopWatch stopwatch = new StopWatch();
+		stopwatch.start();
+		
 		prepareSolutions(_repository.getSolutions());
 		List<SolutionSimilarity> results = detectSimilarities();
-		this._sortedSimilarities = sortSimilarities(results);
-		System.out.println(_sortedSimilarities);
+		
+		stopwatch.stop();
+		result.setSortedSimilarities(sortSimilarities(results));
+		result.setCalcTime(stopwatch.getNanoTime());
+		return result;
 	}
 	
 	//Tokenise all the solutions and all of their underlying files
