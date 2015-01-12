@@ -7,7 +7,7 @@ public class JavaConverter extends SourceCodeConverter{
 	
 	public JavaConverter(TargetLanguage tl){
 		super(tl);
-		this._lexer = new JavaLexer();
+		this._lexer = new JavaLexer(new JavaTokenMapping());
 	}
 	//This method removes the package name from the file
 	protected String removePackageName(String fileContent) {
