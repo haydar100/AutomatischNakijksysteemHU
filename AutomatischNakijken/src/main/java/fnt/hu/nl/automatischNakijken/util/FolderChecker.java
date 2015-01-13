@@ -25,7 +25,7 @@ public class FolderChecker {
 	
 	public static void removeFilesWithClassExtension(String folderUrl) {
 		File folder = new File(folderUrl);
-		File fileList[] = folder.listFiles();
+		//File fileList[] = folder.listFiles();
 		for (File f : folder.listFiles()) {
 			if (f.getName().endsWith(".class")) {
 				System.out.println("Deleting files in the following directory.." + " " + folder.getParent());

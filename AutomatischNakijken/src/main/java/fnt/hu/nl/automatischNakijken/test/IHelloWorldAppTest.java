@@ -78,13 +78,16 @@ public class IHelloWorldAppTest extends TestCase {
 		methods.add(ReflectionUtil.getNameOfMethodObj(m));
 		methods2.add(ReflectionUtil.getNameOfMethodObj(m));
 		ClassBluePrint HelloWorldApp = new ClassBluePrint("HelloWorldApp",
-				methods2);
-		ReflectionUtil cheese = new ReflectionUtil(loadedClass, methodsObj,
+				methods2); // naam van klasse en lijst met methodes die het moet
+							// bevatten
+		ReflectionUtil refUtil = new ReflectionUtil(loadedClass, methodsObj,
 				HelloWorldApp);
-		if (cheese.checkClassName()) {
-			if (ReflectionUtil.compareMethodLists(methods, methods2)) {
-				assertEquals("Hey jij daar", m.invoke(k));
-			}
+		if (refUtil.checkClassName()) {
+			if (!ReflectionUtil.compareMethodLists(methods, methods2)) {
+				System.out.println("CompareMethodLists "
+						+ ReflectionUtil.compareMethodLists(methods, methods2));
+				assertEquals("hoi.", m.invoke(k));
+			} 
 		}
 
 	}

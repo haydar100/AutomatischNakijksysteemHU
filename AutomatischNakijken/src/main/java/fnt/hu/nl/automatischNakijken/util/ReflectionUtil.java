@@ -3,19 +3,21 @@ package fnt.hu.nl.automatischNakijken.util;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import junit.*;
 
 import fnt.hu.nl.automatischNakijken.domain.ClassBluePrint;
 
 public class ReflectionUtil {
 	private Class<?> clazz;
-	private List<Method> method;
+	private List<Method> methodsFromInstance;
 	public ClassBluePrint blueprint;
+	public URIClassLoader classLoader;
 
 	public ReflectionUtil(Class<?> clazz, List<Method> methodsFromInstance,
 			ClassBluePrint blueprint) {
 		super();
 		this.clazz = clazz;
-		this.method = methodsFromInstance;
+		this.methodsFromInstance = methodsFromInstance;
 		this.blueprint = blueprint;
 	}
 
@@ -25,6 +27,12 @@ public class ReflectionUtil {
 	
 	public static String getNameOfMethodObj(Method method) {
 		return method.getName();
+	}
+	
+
+	public Class<?> loadClassToReflect(String className, String rootFolder) {
+		clazz = classLoader.loadCompiledClass(className, rootFolder);
+		return clazz;
 	}
 
 	public List<String> getMethodsFromInstance() {
@@ -43,7 +51,7 @@ public class ReflectionUtil {
 		return false;
 	}
 	
-
+	
 
 	public static boolean compareMethodLists(List<String> methodsFromBluePrint,
 			List<String> methodsFromInstance) {
@@ -74,16 +82,16 @@ public class ReflectionUtil {
 	/**
 	 * @return the method
 	 */
-	public List<Method> getMethod() {
-		return method;
+	public List<Method> getMethods() {
+		return methodsFromInstance;
 	}
 
 	/**
 	 * @param method
 	 *            the method to set
 	 */
-	public void setMethod(List<Method> method) {
-		this.method = method;
+	public void setMethods(List<Method> method) {
+		this.methodsFromInstance = method;
 	}
 
 	public String getNameOfClass() {

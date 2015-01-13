@@ -1,6 +1,5 @@
 package fnt.hu.nl.automatischNakijken.domain;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
