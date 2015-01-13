@@ -1,6 +1,7 @@
 package fnt.hu.nl.automatischNakijken.domain;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -36,7 +37,12 @@ public class Solution {
 		this.nextVersion = nextVersion;
 		this.previousVersion = previousVersion;
 		this.solutionEvaluation = solutionEvaluation;
-		this.similarities = similarities;
+		
+		if(similarities != null)
+			this.similarities = similarities;
+		else
+			this.similarities = new ArrayList<SolutionSimilarity>();
+		
 		this.group = group;
 		this.students = students;
 		this.files = files;
@@ -114,5 +120,19 @@ public class Solution {
 	
 	public void setFiles(List<SolutionFile> files){
 		this.files = files;
+	}
+	
+	//Add the comparison to the list of similarities, and to the subject as well if it does not yet know this similarity
+	public void addSimilarity(SolutionSimilarity similarity){
+		this.similarities.add(similarity);
+		
+		//Create the inverse of the Similarity to see if the other solution knows this combination
+		SolutionSimilarity inverseSimilarity = new SolutionSimilarity(similarity.getSubjectSolution(), similarity.getReferenceSolution(), similarity.getSimilarityPercentage());
+		
+		Solution similaritySubject = similarity.getSubjectSolution();
+		//If the subject does not know the similarity, add the similarity
+		if(!similaritySubject.similarities.contains(similarity)){
+			similaritySubject.addSimilarity(inverseSimilarity);
+		}	
 	}
 }

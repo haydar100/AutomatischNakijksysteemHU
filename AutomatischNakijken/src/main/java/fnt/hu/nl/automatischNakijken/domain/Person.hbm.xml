@@ -3,7 +3,7 @@
  "-//Hibernate/Hibernate Mapping DTD//EN"
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
-<hibernate-mapping package="fnt.hu.nl.automatischNakijken.Domain">
+<hibernate-mapping package="fnt.hu.nl.automatischNakijken.domain">
 	<class name="Person" table="PERSON" discriminator-value="P">
 	    <meta attribute="class-description">
 	       This class contains the class details. 

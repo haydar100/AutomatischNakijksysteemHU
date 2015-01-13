@@ -2,6 +2,7 @@ package fnt.hu.nl.automatischNakijken.test;
 
 import java.io.File;
 
+import fnt.hu.nl.automatischNakijken.domain.TargetLanguage;
 import fnt.hu.nl.automatischNakijken.logic.*;
 import junit.framework.Assert;
 import junit.framework.TestCase;
@@ -16,7 +17,7 @@ public class JavaConverterTest extends TestCase {
 		File file = new File(filePath);
 		File plagiarisedFile = new File(filePathPlagiarised);
 		
-    	SourceCodeConverter converter = new JavaConverter();
+    	SourceCodeConverter converter = new JavaConverter(TargetLanguage.Java);
     	
     	//Act
     	File result = converter.convertSourceCode(file);

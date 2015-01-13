@@ -68,8 +68,8 @@ public class SolutionSimilarity implements Comparable<SolutionSimilarity> {
 	@Override
 	public String toString(){
 		if(referenceSolution != null && subjectSolution != null)
-			return "Reference solution from student " + referenceSolution.getStudents().get(0) + " is " + this.similarityPercentage 
-					+ "% similar to subject solution with student " + subjectSolution.getStudents().get(0); 
+			return "Solution from " + referenceSolution.getStudents().get(0) + " is " + this.similarityPercentage 
+					+ "% similar to solution from " + subjectSolution.getStudents().get(0); 
 		return "" + this.similarityPercentage;
 	}
 }

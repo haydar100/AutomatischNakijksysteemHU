@@ -3,7 +3,7 @@
  "-//Hibernate/Hibernate Mapping DTD//EN"
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
-<hibernate-mapping package="fnt.hu.nl.automatischNakijken.Domain">
+<hibernate-mapping package="fnt.hu.nl.automatischNakijken.domain">
 	<class name="SolutionSimilarity" table="SOLUTIONSIMILARITY">
 	    <meta attribute="class-description">
 	       This class contains the group details. 
@@ -14,10 +14,11 @@
 	   <property name="similarityPercentage" column="similarityPercentage" type="double"/>
 	   
 	    <many-to-one name="referenceSolution" class="Solution" fetch="select">
-	    	<column name="solution_id" not-null="true" />
+	    	<column name="reference_solution_id" not-null="true" />
 	  </many-to-one>
 	  
-	  <one-to-one name="subjectSolution" cascade="all"></one-to-one>
-	      	
+	  <many-to-one name="subjectSolution" class="Solution" fetch="select">
+	    	<column name="subject_solution_id" not-null="true" />
+	  </many-to-one>
    </class>
 </hibernate-mapping>

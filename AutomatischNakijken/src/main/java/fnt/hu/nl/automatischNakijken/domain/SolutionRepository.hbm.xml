@@ -3,7 +3,7 @@
  "-//Hibernate/Hibernate Mapping DTD//EN"
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
-<hibernate-mapping package="fnt.hu.nl.automatischNakijken.Domain">
+<hibernate-mapping package="fnt.hu.nl.automatischNakijken.domain">
 	<class name="SolutionRepository" table="SOLUTIONREPOSITORY">
 	    <meta attribute="class-description">
 	       This class contains the group details. 
@@ -15,7 +15,7 @@
 	    
 	      <property name="targetLanguage" column="targetLanguage">
 	    	<type name="org.hibernate.type.EnumType">
-	    	<param name="enumClass">fnt.hu.nl.automatischNakijken.Domain.TargetLanguage</param>
+	    	<param name="enumClass">fnt.hu.nl.automatischNakijken.domain.TargetLanguage</param>
 	    	<param name="type">12</param>
 	    	</type>
 	    </property>

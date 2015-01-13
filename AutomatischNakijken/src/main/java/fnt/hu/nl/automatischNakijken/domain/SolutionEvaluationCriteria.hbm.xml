@@ -3,7 +3,7 @@
  "-//Hibernate/Hibernate Mapping DTD//EN"
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
-<hibernate-mapping package="fnt.hu.nl.automatischNakijken.Domain">
+<hibernate-mapping package="fnt.hu.nl.automatischNakijken.domain">
 	<class name="SolutionEvaluationCriteria" table="SOLUTIONEVALUATIONCRITERIA">
 	    <meta attribute="class-description">
 	       This class contains the group details. 
@@ -16,7 +16,7 @@
 	   
 	    <property name="grade" column="grade">
 	    	<type name="org.hibernate.type.EnumType">
-	    	<param name="enumClass">fnt.hu.nl.automatischNakijken.Domain.Grade</param>
+	    	<param name="enumClass">fnt.hu.nl.automatischNakijken.domain.Grade</param>
 	    	<param name="type">12</param>
 	    	</type>
 	    </property>

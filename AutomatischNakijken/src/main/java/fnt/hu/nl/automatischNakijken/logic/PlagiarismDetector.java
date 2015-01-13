@@ -6,31 +6,42 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.apache.commons.lang3.time.StopWatch;
+
 import edu.emory.mathcs.backport.java.util.Collections;
 import fnt.hu.nl.automatischNakijken.domain.*;
+import fnt.hu.nl.automatischNakijken.util.FileUtil;
+import fnt.hu.nl.automatischNakijken.util.StringSimilarityUtil;
 
 public class PlagiarismDetector {
 	private SourceCodeConverter _converter;
 	private SolutionRepository _repository;
-	private List<SolutionSimilarity> _sortedSimilarities;
 	
 	public PlagiarismDetector(SourceCodeConverter converter, SolutionRepository repository){
 		this._converter = converter;
 		this._repository = repository;
 	}
 	
-	public void startPlagiarismDetection(){
+	public DetectionResult startPlagiarismDetection(){
+		DetectionResult result = new DetectionResult();
+		result.setSolutionCount(_repository.getSolutions().size());
+		StopWatch stopwatch = new StopWatch();
+		stopwatch.start();
+		
 		prepareSolutions(_repository.getSolutions());
 		List<SolutionSimilarity> results = detectSimilarities();
-		this._sortedSimilarities = sortSimilarities(results);
-		System.out.println(_sortedSimilarities);
+		
+		stopwatch.stop();
+		result.setSortedSimilarities(sortSimilarities(results));
+		result.setCalcTime(stopwatch.getNanoTime());
+		return result;
 	}
 	
 	//Tokenise all the solutions and all of their underlying files
 	private void prepareSolutions(List<Solution> repositorySolutions) {
 		for(Solution solution : repositorySolutions){
 			for(SolutionFile file : solution.getFiles()){
-				_converter.convertSourceCode(file);
+				file.setTokenisedFile(_converter.convertSourceCode(file));
 			}	
 		}
 	}
@@ -47,17 +58,21 @@ public class PlagiarismDetector {
 					SolutionSimilarity similarity = new SolutionSimilarity(referenceSolution, subjectSolution, 0.0);
 					//Skip comparison if the combination has been inspected
 					if(!results.contains(similarity)){
+						
+						List<Double> fileSimilarities = new ArrayList<Double>();
 						//Compare all files of each solution
 						for(SolutionFile referenceFile : referenceSolution.getFiles()){
 							for(SolutionFile subjectFile : subjectSolution.getFiles()){
 								//Compare the files and add to a cumulative score.
-								//TODO
-								double fileSimilarity = calculateFileSimilarity(referenceFile, subjectFile);				
+								fileSimilarities.add(getFileSimilarity(referenceFile.getTokenisedFile(), subjectFile.getTokenisedFile())); 			
 							}
 						}
-						double similarityPercentage = calculateSolutionSimilarity();
+						double similarityPercentage = calculateSolutionSimilarity(fileSimilarities);
 						similarity.setSimilarityPercentage(similarityPercentage);
 						results.add(similarity); 
+						//Save the comparison in the referencesolution and subsequently the inverse in the subject
+						referenceSolution.addSimilarity(similarity);
+						
 					}
 				}
 			}
@@ -65,9 +80,12 @@ public class PlagiarismDetector {
 		return results;
 	}
 		
-	private double calculateSolutionSimilarity() {
-		// TODO Auto-generated method stub
-		return 0;
+	private double calculateSolutionSimilarity(List<Double> fileSimilarities) {
+		double sum = 0;
+		for(double d : fileSimilarities){
+			sum += d;
+		}
+		return sum/fileSimilarities.size();
 	}
 
 	//Sorts the similarities in descending order
@@ -76,10 +94,11 @@ public class PlagiarismDetector {
 		return results;
 	}
 	
-	private double calculateFileSimilarity(File reference, File subject){
-		String referenceContent;
-		String subjectContent;
+	private double getFileSimilarity(File reference, File subject){
 		
-		return 0.0;
+		String referenceContent = FileUtil.getContentFromFile(reference);
+		String subjectContent = FileUtil.getContentFromFile(subject);
+		
+		return StringSimilarityUtil.calculateSimilarityPercentage(referenceContent, subjectContent);
 	}
 }

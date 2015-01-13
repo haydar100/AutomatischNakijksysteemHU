@@ -3,9 +3,9 @@ package fnt.hu.nl.automatischNakijken.logic;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JavaTokenMapping {
-	private static Map<Character, TokenType> charTokenMap;
-	static{
+public class JavaTokenMapping extends TokenMapping {
+	public JavaTokenMapping(){
+		//Initialize charmap
 		charTokenMap = new HashMap<Character, TokenType>();
 		charTokenMap.put('{', TokenType.LACCOL);
 		charTokenMap.put('}', TokenType.RACCOL);
@@ -22,10 +22,8 @@ public class JavaTokenMapping {
 		charTokenMap.put('*', TokenType.OP_MUL);
 		charTokenMap.put('/', TokenType.OP_DIV);
 		charTokenMap.put('%', TokenType.OP_MOD);
-	};
-	
-	private static Map<String, TokenType> wordTokenMap;
-	static{
+		
+		//Initialize wordmap
 		wordTokenMap = new HashMap<String, TokenType>();
 		wordTokenMap.put("public", TokenType.AM_PUBLIC);
 		wordTokenMap.put("private", TokenType.AM_PRIVATE);
@@ -54,16 +52,6 @@ public class JavaTokenMapping {
 		wordTokenMap.put("break", TokenType.RW_BREAK);
 		wordTokenMap.put("static", TokenType.RW_STATIC);
 		wordTokenMap.put("final", TokenType.RW_FINAL);
-	};
 	
-	public static TokenType getCharTokenType(char c){
-		return charTokenMap.get(c);
-	}
-	
-	public static TokenType getWordTokenType(String s){
-		TokenType type = wordTokenMap.get(s);
-		if(type == null)
-			type = TokenType.ATOM;
-		return type;
 	}
 }
