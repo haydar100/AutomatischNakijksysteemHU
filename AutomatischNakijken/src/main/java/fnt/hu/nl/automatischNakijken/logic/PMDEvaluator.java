@@ -13,19 +13,18 @@ import fnt.hu.nl.automatischNakijken.util.PMDRunner;
 
 public class PMDEvaluator extends AutomaticCheck {
 
-	private String classNameToTest;
-	private String pathToClass;
+
 	private String absolutePathToClass;
-	private Solution solution;
-	private String testPath;
+	private Solution solution; // dit controleren
 	private Grade grade;
 	private String name;
 
 
-	public PMDEvaluator(String name, boolean isFailable, Solution s) {
+	public PMDEvaluator(String name, boolean isFailable, Solution s, String absolutePathToClass) {
 		super(name, isFailable);
 		this.solution = s;
 		this.name = name;
+		this.absolutePathToClass = absolutePathToClass;
 	}
 
 
@@ -57,7 +56,7 @@ public class PMDEvaluator extends AutomaticCheck {
 
 	public void runPMD() throws IOException {
 		PMDRunner pmd = new PMDRunner();
-		pmd.callPmd("C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java");
+		pmd.callPmd(absolutePathToClass);
 		grade = pmd.grade();
 		
 	}

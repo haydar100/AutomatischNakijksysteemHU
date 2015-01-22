@@ -15,20 +15,20 @@ public class JUnitEvaluator extends AutomaticCheck {
 
 	private String classNameToTest;
 	private String pathToClass;
-	private String absolutePathToClass;
+	private String pathToClassFolder;
 	private Solution solution;
-	private String testPath;
 	private Grade grade;
 	private String name;
 
-
-	public JUnitEvaluator(String name, boolean isFailable, Solution s) {
+	public JUnitEvaluator(String name, boolean isFailable, Solution s,
+			String classNameToTest, String pathToClass, String pathToClassFolder) {
 		super(name, isFailable);
 		this.solution = s;
 		this.name = name;
+		this.classNameToTest = classNameToTest;
+		this.pathToClass = pathToClass;
+		this.pathToClassFolder = pathToClassFolder;
 	}
-
-
 
 	@Override
 	public SolutionEvaluationCriteria runCheck(Solution s) {
@@ -36,37 +36,25 @@ public class JUnitEvaluator extends AutomaticCheck {
 		for (Student student : s.getStudents()) {
 			System.out.println(student.getFullName());
 		}
-		SolutionEvaluationCriteria criteria = new SolutionEvaluationCriteria(name, grade);
+		SolutionEvaluationCriteria criteria = new SolutionEvaluationCriteria(
+				name, grade);
 		System.out.println(name.toString());
 		return criteria;
-		
+
 	}
-	
-	public String getSolutionFiles() {
-		
-		for (SolutionFile file : solution.getFiles()) {
-			testPath = file.getFilePath();
-		}
-		return testPath;
-	}
-	
+
 	public void runJUnit() {
-	TestRunner runner = new TestRunner();
-	IHelloWorldAppTest instance = new IHelloWorldAppTest();
-	URIClassLoader UriClassLoader = new URIClassLoader();
-	FolderChecker
-			.removeFilesWithClassExtension("C:\\Users\\Berkan\\Desktop\\test\\");
-	UriClassLoader
-			.compileJavaSourceFile("C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java");
-	instance.setClassName("HelloWorldApp");
-	instance.setPathToClass("C:\\Users\\Berkan\\Desktop\\test\\");
-	runner.runClass(instance.getClass());
-	grade = runner.getGrade();
-	System.out.println(grade);
+		TestRunner runner = new TestRunner();
+		IHelloWorldAppTest instance = new IHelloWorldAppTest();
+		URIClassLoader UriClassLoader = new URIClassLoader();
+		FolderChecker.removeFilesWithClassExtension(pathToClassFolder);
+		UriClassLoader.compileJavaSourceFile(pathToClass);
+		instance.setClassName(classNameToTest);
+		instance.setPathToClass(pathToClassFolder);
+		runner.runClass(instance.getClass());
+		grade = runner.getGrade();
+		System.out.println(grade);
 
-}
-
-
-
+	}
 
 }

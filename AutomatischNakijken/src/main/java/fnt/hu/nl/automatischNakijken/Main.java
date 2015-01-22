@@ -86,9 +86,10 @@ public class Main {
 		solutions.add(solution2);
 		solutions.add(solution3);
 		SolutionRepository repository = new SolutionRepository(null, null, solutions, false, TargetLanguage.Java);
-		CheckStyleEvaluator fcr = new CheckStyleEvaluator("CheckStyleEvaluator", false, solution1);
-		PMDEvaluator pmde = new PMDEvaluator("PMD", false, solution1);
-		JUnitEvaluator junite = new JUnitEvaluator("JUNIT", true, solution1);
+		//CheckStyleEvaluator fcr = new CheckStyleEvaluator("CheckStyleEvaluator", false, solution1, , filePath3);
+		CheckStyleEvaluator fcr = new CheckStyleEvaluator("CheckStyle", false, solution1, "HelloWorldApp","C:\\Users\\Berkan\\Desktop\\test\\");
+		PMDEvaluator pmde = new PMDEvaluator("PMD", false, solution1, "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java");
+		JUnitEvaluator junite = new JUnitEvaluator("PMD",false, solution1, "HelloWorldApp", "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java", "C:\\Users\\Berkan\\Desktop\\test\\");
 		pmde.runCheck(solution1);
 		fcr.runCheck(solution1);
 		junite.runCheck(solution1);

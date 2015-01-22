@@ -23,22 +23,18 @@ import fnt.hu.nl.opdracht.IHelloWorldApp;
 public class CheckStyleEvaluator extends AutomaticCheck {
 
 	private String classNameToTest;
-	private String pathToClass;
-	private String absolutePathToClass;
+	private String pathToClassFolder;
 	private Solution solution;
-	private String testPath;
 	private Grade grade;
 	private String name;
 
-
-	public CheckStyleEvaluator(String name, boolean isFailable, Solution s) {
+	public CheckStyleEvaluator(String name, boolean isFailable, Solution s,
+			String classNameToTest, String pathToClassFolder) {
 		super(name, isFailable);
 		this.solution = s;
 		this.name = name;
-	}
-
-	public void runAllTests() {
-
+		this.classNameToTest = classNameToTest;
+		this.pathToClassFolder = pathToClassFolder;
 	}
 
 	@Override
@@ -64,35 +60,24 @@ public class CheckStyleEvaluator extends AutomaticCheck {
 		for (Student student : s.getStudents()) {
 			System.out.println(student.getFullName());
 		}
-		SolutionEvaluationCriteria criteria = new SolutionEvaluationCriteria(name, grade);
+		SolutionEvaluationCriteria criteria = new SolutionEvaluationCriteria(
+				name, grade);
 		System.out.println(name.toString());
 		return criteria;
-		
+
 	}
-	
-	public String getSolutionFiles() {
-		
-		for (SolutionFile file : solution.getFiles()) {
-			testPath = file.getFilePath();
-		}
-		return testPath;
-	}
-	
+
 	private String runCheckStyle() throws FileNotFoundException,
 			CheckstyleException, InstantiationException, IllegalAccessException {
-		// http://stackoverflow.com/questions/11916706/slf4j-failed-to-load-class-org-slf4j-impl-staticloggerbinder-error
 		URIClassLoader test = new URIClassLoader();
 		java.lang.Class<?> loadedClass = test.loadCompiledClass(
-				"HelloWorldApp", "C:\\Users\\Berkan\\Desktop\\test\\");
+				classNameToTest, pathToClassFolder);
 		IHelloWorldApp ihwp = ((IHelloWorldApp) loadedClass.newInstance());
 		CheckStyleRunner csr = new CheckStyleRunner();
-		csr.run(ihwp, "C:\\Users\\Berkan\\Desktop\\test\\",
-				"checkstyle.xml");
+		csr.run(ihwp, pathToClassFolder, "checkstyle.xml");
 		grade = csr.grade();
 		System.out.println(grade.toString());
 		return grade.toString();
 	}
-
-
 
 }
