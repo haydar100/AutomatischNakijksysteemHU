@@ -48,90 +48,11 @@ import fnt.hu.nl.opdracht.IHelloWorldApp;
  * 
  */
 public class Main {
-	
+
 	public static void main(String[] args) throws InstantiationException,
 			IllegalAccessException, CheckstyleException, IOException,
 			URISyntaxException {
-		runTest();
 	}
-	
-	public static void runTest() {
-		//Arrange
-		List<Student> students1 = new ArrayList<Student>();
-		List<Student> students2 = new ArrayList<Student>();
-		List<Student> students3 = new ArrayList<Student>();
-		Student student1 = new Student("Haydar", "Yilmaz", "Haydar Yilmaz", "test@test.nl");
-		Student student2 = new Student("Roy", "Straub", "Roy Straub", "test@test.nl");
-		Student student3 = new Student("Sjaak", "Bonenstaak", "Sjaak Bonenstaak", "test@test.nl");
-		students1.add(student1);
-		students2.add(student2);
-		students3.add(student3);
-		String filePath = "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java";
-		SolutionFile file = new SolutionFile(filePath);
-		String filePath2 = "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java";
-		SolutionFile file2 = new SolutionFile(filePath2);
-		String filePath3 = "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java";
-		SolutionFile file3 = new SolutionFile(filePath3);
-		List<SolutionFile> files = new ArrayList<SolutionFile>();
-		files.add(file);
-		List<SolutionFile> files2 = new ArrayList<SolutionFile>();
-		files2.add(file2);
-		List<SolutionFile> files3 = new ArrayList<SolutionFile>();
-		files3.add(file3);
-		Solution solution1 = new Solution(null, null, null, null, null, null, students1, files3, Calendar.getInstance(), true);
-		Solution solution2 = new Solution(null, null, null, null, null, null, students2, files2, Calendar.getInstance(), true);
-		Solution solution3 = new Solution(null, null, null, null, null, null, students3, files, Calendar.getInstance(), true);
-		List<Solution> solutions = new ArrayList<Solution>();
-		solutions.add(solution1);
-		solutions.add(solution2);
-		solutions.add(solution3);
-		SolutionRepository repository = new SolutionRepository(null, null, solutions, false, TargetLanguage.Java);
-		//CheckStyleEvaluator fcr = new CheckStyleEvaluator("CheckStyleEvaluator", false, solution1, , filePath3);
-		CheckStyleEvaluator fcr = new CheckStyleEvaluator("CheckStyle", false, solution1, "HelloWorldApp","C:\\Users\\Berkan\\Desktop\\test\\");
-		PMDEvaluator pmde = new PMDEvaluator("PMD", false, solution1, "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java");
-		JUnitEvaluator junite = new JUnitEvaluator("PMD",false, solution1, "HelloWorldApp", "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java", "C:\\Users\\Berkan\\Desktop\\test\\");
-		pmde.runCheck(solution1);
-		fcr.runCheck(solution1);
-		junite.runCheck(solution1);
-		
-		
-	}
-	
-/*	private static void runJUnit() {
-		TestRunner runner = new TestRunner();
-		IHelloWorldAppTest instance = new IHelloWorldAppTest();
-		URIClassLoader UriClassLoader = new URIClassLoader();
-		FolderChecker
-				.removeFilesWithClassExtension("C:\\Users\\Berkan\\Documents\\testfolder\\");
-		UriClassLoader
-				.compileJavaSourceFile("C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldApp.java");
-		instance.setClassName("HelloWorldApp");
-		instance.setPathToClass("C:\\Users\\Berkan\\Documents\\testfolder\\");
-		runner.runClass(instance.getClass());
-	
-	}
-
-	private static void runCheckStyle() throws FileNotFoundException,
-			CheckstyleException, InstantiationException, IllegalAccessException {
-		// http://stackoverflow.com/questions/11916706/slf4j-failed-to-load-class-org-slf4j-impl-staticloggerbinder-error
-		URIClassLoader test = new URIClassLoader();
-		java.lang.Class<?> loadedClass = test.loadCompiledClass(
-				"HelloWorldApp", "C:\\Users\\Berkan\\Documents\\testfolder\\");
-		IHelloWorldApp ihwp = ((IHelloWorldApp) loadedClass.newInstance());
-		CheckStyleRunner csr = new CheckStyleRunner("CheckStyle", true);
-		csr.run(ihwp, "C:\\Users\\Berkan\\Documents\\testfolder\\",
-				"checkstyle.xml");
-	}
-
-	private static void runPMD() throws IOException {
-		AutomaticCheck check = new AutomaticCheck(name, isFailable);
-		check.runCheck(s)
-		PMDRunner pmd = new PMDRunner("PMD", true);
-		CheckStyleRunner run = new CheckStyleRunner("blabla", true);
-		pmd.callPmd("C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldApp.java");
-		pmd.runCheck(s)
-
-	}*/
 
 	private static void setupDatabaseEntities() {
 
