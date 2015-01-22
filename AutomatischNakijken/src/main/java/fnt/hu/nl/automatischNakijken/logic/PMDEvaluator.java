@@ -15,14 +15,12 @@ public class PMDEvaluator extends AutomaticCheck {
 
 
 	private String absolutePathToClass;
-	private Solution solution; // dit controleren
 	private Grade grade;
 	private String name;
 
 
 	public PMDEvaluator(String name, boolean isFailable, Solution s, String absolutePathToClass) {
 		super(name, isFailable);
-		this.solution = s;
 		this.name = name;
 		this.absolutePathToClass = absolutePathToClass;
 	}

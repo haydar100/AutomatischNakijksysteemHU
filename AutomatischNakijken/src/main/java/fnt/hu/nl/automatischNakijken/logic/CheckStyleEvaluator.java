@@ -24,14 +24,12 @@ public class CheckStyleEvaluator extends AutomaticCheck {
 
 	private String classNameToTest;
 	private String pathToClassFolder;
-	private Solution solution;
 	private Grade grade;
 	private String name;
 
 	public CheckStyleEvaluator(String name, boolean isFailable, Solution s,
 			String classNameToTest, String pathToClassFolder) {
 		super(name, isFailable);
-		this.solution = s;
 		this.name = name;
 		this.classNameToTest = classNameToTest;
 		this.pathToClassFolder = pathToClassFolder;
@@ -51,9 +49,6 @@ public class CheckStyleEvaluator extends AutomaticCheck {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (CheckstyleException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

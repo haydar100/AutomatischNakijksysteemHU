@@ -16,14 +16,12 @@ public class JUnitEvaluator extends AutomaticCheck {
 	private String classNameToTest;
 	private String pathToClass;
 	private String pathToClassFolder;
-	private Solution solution;
 	private Grade grade;
 	private String name;
 
 	public JUnitEvaluator(String name, boolean isFailable, Solution s,
 			String classNameToTest, String pathToClass, String pathToClassFolder) {
 		super(name, isFailable);
-		this.solution = s;
 		this.name = name;
 		this.classNameToTest = classNameToTest;
 		this.pathToClass = pathToClass;
