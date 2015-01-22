@@ -17,8 +17,8 @@ public class AutomaticCheck implements AssignmentCheck {
 
 
 	public SolutionEvaluationCriteria runCheck(Solution s) {
-		// TODO Auto-generated method stub
 		return null;
+		
 	}
 
 	/**

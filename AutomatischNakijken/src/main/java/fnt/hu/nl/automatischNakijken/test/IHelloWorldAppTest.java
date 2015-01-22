@@ -5,6 +5,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+
+import javax.annotation.RegEx;
 
 import junit.framework.TestCase;
 
@@ -13,6 +16,7 @@ import org.junit.Test;
 import fnt.hu.nl.automatischNakijken.domain.ClassBluePrint;
 import fnt.hu.nl.automatischNakijken.util.PMDRunner;
 import fnt.hu.nl.automatischNakijken.util.ReflectionUtil;
+import fnt.hu.nl.automatischNakijken.util.RegexMatcher;
 import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
 import fnt.hu.nl.opdracht.HelloWorldApp;
 import fnt.hu.nl.opdracht.IHelloWorldApp;
@@ -87,19 +91,42 @@ public class IHelloWorldAppTest extends TestCase {
 				System.out.println("CompareMethodLists "
 						+ ReflectionUtil.compareMethodLists(methods, methods2));
 				assertEquals("hoi.", m.invoke(k));
-			} 
+			}
 		}
 
 	}
 
 	@Test
-	public void testMethodA() throws ClassNotFoundException,
+	public void testMethodRegex() throws ClassNotFoundException,
 			InstantiationException, IllegalAccessException, IOException {
 		URIClassLoader test = new URIClassLoader();
 		Class loadedClass = test.loadCompiledClass(className, pathToClass);
 		IHelloWorldApp ihwp = ((IHelloWorldApp) loadedClass.newInstance());
-		assertEquals(ihwp.getHello(), ihwp.getHello());
+		/*
+		 * assertEquals("Output:" + ihwp.getHello() + " is not correct"
+		 * ,ihwp.getHello(), ihwp.getHello().matches(".oi"))
+		 */;
+		boolean outputTest = false;
+		outputTest = Pattern.matches(".*oi", ihwp.getHello());
+		System.out.println(outputTest);
+		System.out.println("Testing for: " + ihwp.getHello() + "[" + outputTest
+				+ "]");
+		if (outputTest) {
+			System.out.println("Output " + ihwp.getHello() + " is correct");
+		}
+		assertTrue(outputTest);
 
 	}
+
+	/*@Test
+	public void testMethodAssertEquals() throws ClassNotFoundException,
+			InstantiationException, IllegalAccessException, IOException {
+		URIClassLoader test = new URIClassLoader();
+		Class loadedClass = test.loadCompiledClass(className, pathToClass);
+		IHelloWorldApp ihwp = ((IHelloWorldApp) loadedClass.newInstance());
+
+		assertEquals(ihwp.getHello() , ihwp.getHello());
+
+	}*/
 
 }

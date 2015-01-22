@@ -53,10 +53,6 @@ public class Main {
 		// setupDatabaseEntities();
 	}
 	
-	private static void reflectionTest() {
-		
-	}
-
 	private static void runJUnit() {
 		TestRunner runner = new TestRunner();
 		IHelloWorldAppTest instance = new IHelloWorldAppTest();
@@ -84,6 +80,8 @@ public class Main {
 	}
 
 	private static void runPMD() throws IOException {
+		AutomaticCheck test = new AutomaticCheck("PMD", true);
+		//test.runCheck(s)
 		PMDRunner pmd = new PMDRunner("PMD", true);
 		pmd.callPmd("C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldApp.java");
 

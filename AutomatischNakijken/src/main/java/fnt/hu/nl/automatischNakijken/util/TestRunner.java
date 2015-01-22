@@ -23,7 +23,7 @@ public class TestRunner {
 
 		}
 		if (result.wasSuccessful()) {
-			System.out.println("All tests passed...");
+			System.out.println("Assignment checked.. no error could be found");
 		}
 	}
 }

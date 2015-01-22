@@ -29,11 +29,11 @@ public class PlagiarismDetectorTest {
 		students1.add(student1);
 		students2.add(student2);
 		students3.add(student3);
-		String filePath = "/Users/roystraub/Desktop/testfiles/Class.java";
+		String filePath = "C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldApp.java";
 		SolutionFile file = new SolutionFile(filePath);
-		String filePath2 = "/Users/roystraub/Desktop/testfiles/ClassPlagiarised.java";
+		String filePath2 = "C:\\Users\\Berkan\\Documents\\testfolder\\PlagiaatTest.java";
 		SolutionFile file2 = new SolutionFile(filePath2);
-		String filePath3 = "/Users/roystraub/Desktop/testfiles/ClassHaydar.java";
+		String filePath3 = "C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldAppHaydar.java";
 		SolutionFile file3 = new SolutionFile(filePath3);
 		List<SolutionFile> files = new ArrayList<SolutionFile>();
 		files.add(file);

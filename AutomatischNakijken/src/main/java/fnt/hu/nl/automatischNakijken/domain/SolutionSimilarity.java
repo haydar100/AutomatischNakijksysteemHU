@@ -1,4 +1,5 @@
 package fnt.hu.nl.automatischNakijken.domain;
+import java.lang.Comparable;
 
 public class SolutionSimilarity implements Comparable<SolutionSimilarity> {
 	private Solution referenceSolution;

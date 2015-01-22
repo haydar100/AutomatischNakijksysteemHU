@@ -44,7 +44,7 @@ public class PMDRunner extends AutomaticCheck {
 				rowsOut.add(line);
 			}
 		}
-		System.out.println("Found " + rowsOut.size() + " errors in " + codeToCheck );
+		System.out.println("PMD Found " + rowsOut.size() + " problems in " + codeToCheck );
 		for (String error : rowsOut) {
 			System.out.println(error);
 		}
