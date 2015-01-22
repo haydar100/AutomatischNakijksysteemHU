@@ -13,18 +13,16 @@ import fnt.hu.nl.automatischNakijken.util.PMDRunner;
 
 public class PMDEvaluator extends AutomaticCheck {
 
-
 	private String absolutePathToClass;
 	private Grade grade;
 	private String name;
 
-
-	public PMDEvaluator(String name, boolean isFailable, Solution s, String absolutePathToClass) {
+	public PMDEvaluator(String name, boolean isFailable, Solution s,
+			String absolutePathToClass) {
 		super(name, isFailable);
 		this.name = name;
 		this.absolutePathToClass = absolutePathToClass;
 	}
-
 
 	@Override
 	public SolutionEvaluationCriteria runCheck(Solution s) {
@@ -37,28 +35,30 @@ public class PMDEvaluator extends AutomaticCheck {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		SolutionEvaluationCriteria criteria = new SolutionEvaluationCriteria(
+				name, grade);
 		for (Student student : s.getStudents()) {
-			System.out.println(student.getFullName());
-		for (SolutionFile file : s.getFiles()) {
-			System.out.println(file.toString());
+
+			System.out.println("Assignment uploaded by "
+					+ student.getFullName() + " " + student.getEmail()
+					+ " Evaluator: " + name.toString());
+			for (SolutionFile file : s.getFiles()) {
+				System.out
+						.println("File that got evaluated " + file.toString());
+			}
+			System.out.println("Evaluated on "
+					+ s.getTimeOfSubmission().getTime());
+
 		}
-		System.out.println(s.getTimeOfSubmission().getTime());
-		}
-		SolutionEvaluationCriteria criteria = new SolutionEvaluationCriteria(name, grade);
-		System.out.println(name.toString());
-		System.out.println(grade.toString());
 		return criteria;
-		
+
 	}
-	
 
 	public void runPMD() throws IOException {
 		PMDRunner pmd = new PMDRunner();
 		pmd.callPmd(absolutePathToClass);
 		grade = pmd.grade();
-		
+
 	}
-
-
 
 }

@@ -61,7 +61,9 @@ public class StaticDynamicEvaluatorTest {
 		PMDEvaluator pmde = new PMDEvaluator("PMD", false, solution1, "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java");
 		JUnitEvaluator junite = new JUnitEvaluator("PMD",false, solution1, "HelloWorldApp", "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java", "C:\\Users\\Berkan\\Desktop\\test\\");
 		pmde.runCheck(solution1);
+		System.out.println("-----------------------------------------------------------------");
 		fcr.runCheck(solution1);
+		System.out.println("-----------------------------------------------------------------");
 		junite.runCheck(solution1);
 		
 		

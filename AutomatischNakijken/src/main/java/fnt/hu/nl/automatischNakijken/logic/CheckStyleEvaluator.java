@@ -52,17 +52,28 @@ public class CheckStyleEvaluator extends AutomaticCheck {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for (Student student : s.getStudents()) {
-			System.out.println(student.getFullName());
-		}
+
 		SolutionEvaluationCriteria criteria = new SolutionEvaluationCriteria(
 				name, grade);
-		System.out.println(name.toString());
+
+		for (Student student : s.getStudents()) {
+
+			System.out.println("Assignment uploaded by "
+					+ student.getFullName() + " " + student.getEmail()
+					+ " Evaluator: " + name.toString());
+			for (SolutionFile file : s.getFiles()) {
+				System.out
+						.println("File that got evaluated " + file.toString());
+			}
+			System.out.println("Evaluated on "
+					+ s.getTimeOfSubmission().getTime());
+		}
+		System.out.println("Result: " + grade);
 		return criteria;
 
 	}
 
-	private String runCheckStyle() throws FileNotFoundException,
+	private void runCheckStyle() throws FileNotFoundException,
 			CheckstyleException, InstantiationException, IllegalAccessException {
 		URIClassLoader test = new URIClassLoader();
 		java.lang.Class<?> loadedClass = test.loadCompiledClass(
@@ -71,8 +82,6 @@ public class CheckStyleEvaluator extends AutomaticCheck {
 		CheckStyleRunner csr = new CheckStyleRunner();
 		csr.run(ihwp, pathToClassFolder, "checkstyle.xml");
 		grade = csr.grade();
-		System.out.println(grade.toString());
-		return grade.toString();
 	}
 
 }

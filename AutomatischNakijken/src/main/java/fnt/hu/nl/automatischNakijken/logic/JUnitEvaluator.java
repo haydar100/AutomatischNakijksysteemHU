@@ -31,12 +31,22 @@ public class JUnitEvaluator extends AutomaticCheck {
 	@Override
 	public SolutionEvaluationCriteria runCheck(Solution s) {
 		runJUnit();
-		for (Student student : s.getStudents()) {
-			System.out.println(student.getFullName());
-		}
 		SolutionEvaluationCriteria criteria = new SolutionEvaluationCriteria(
 				name, grade);
-		System.out.println(name.toString());
+		for (Student student : s.getStudents()) {
+
+			System.out.println("Assignment uploaded by "
+					+ student.getFullName() + " " + student.getEmail()
+					+ " Evaluator: " + name.toString());
+			for (SolutionFile file : s.getFiles()) {
+				System.out
+						.println("File that got evaluated " + file.toString());
+			}
+			System.out.println("Evaluated on "
+					+ s.getTimeOfSubmission().getTime());
+			System.out.println("Result: " + grade);
+
+		}
 		return criteria;
 
 	}
@@ -51,7 +61,7 @@ public class JUnitEvaluator extends AutomaticCheck {
 		instance.setPathToClass(pathToClassFolder);
 		runner.runClass(instance.getClass());
 		grade = runner.getGrade();
-		System.out.println(grade);
+		
 
 	}
 
