@@ -1,67 +1,100 @@
 package fnt.hu.nl.automatischNakijken.test;
-/*package fnt.hu.nl.automatischNakijken;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import junit.framework.TestCase;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
+import fnt.hu.nl.automatischNakijken.domain.ClassBluePrint;
+import fnt.hu.nl.automatischNakijken.util.ReflectionUtil;
+import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
+import fnt.hu.nl.opdracht.IHelloWorldApp;
 
-
-
-@RunWith(Parameterized.class)
 public class HelloWorldAppTest extends TestCase {
-	
-	private Class clazz;
-	private Method method;
+	public static String className;
+	public static String pathToClass;
 
-	public HelloWorldAppTest(Class clazz, Method method) {
-		this.clazz = clazz;
-		this.method = method;
+	/**
+	 * 
+	 */
+	public HelloWorldAppTest() {
+		super();
 	}
-	
-	
 
-	@Parameters
-	public static Collection<Object[]> classesAndMethods()
-			throws NoSuchMethodException, SecurityException {
-		List<Object[]> list = new ArrayList<Object[]>();
-		list.add(new Object[] { HelloWorldApp.class, HelloWorldApp.class.getDeclaredMethod("getHello") });
-		return list;
+	/**
+	 * @return the className
+	 */
+	public String getClassName() {
+		return className;
 	}
-	
+
+	/**
+	 * @param className
+	 *            the className to set
+	 */
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	/**
+	 * @return the pathToClass
+	 */
+	public String getPathToClass() {
+		return pathToClass;
+	}
+
+	/**
+	 * @param pathToClass
+	 *            the pathToClass to set
+	 */
+	public void setPathToClass(String pathToClass) {
+		this.pathToClass = pathToClass;
+	}
+
 	@Test
-	public void testMethodA() throws NoSuchMethodException, SecurityException {
-	Method m = HelloWorldApp.class.getDeclaredMethod("getHello");
-	Object k;
-	try {
-		k = HelloWorldApp.class.newInstance();
-		
-		assertEquals("Hello world !", m.invoke(k));
-	} catch (InstantiationException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (IllegalAccessException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (IllegalArgumentException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (InvocationTargetException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	public void testMethodBReflection() throws NoSuchMethodException,
+			SecurityException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException,
+			InstantiationException {
+		URIClassLoader test = new URIClassLoader();
+		Class loadedClass = test.loadCompiledClass(className, pathToClass);
+		List<String> methods = new ArrayList<String>();
+		List<String> methods2 = new ArrayList<String>();
+		Method m = loadedClass.getDeclaredMethod("getHello");
+		List<Method> methodsObj = new ArrayList<Method>();
+		methodsObj.add(m);
+
+		Method m1 = loadedClass.getDeclaredMethod("getHello");
+		// Method m2 = hwa.getHello();
+		Object k = loadedClass.newInstance();
+		ReflectionUtil.getNameOfMethodObj(m);
+		methods.add(ReflectionUtil.getNameOfMethodObj(m));
+		methods2.add(ReflectionUtil.getNameOfMethodObj(m));
+		ClassBluePrint HelloWorldApp = new ClassBluePrint("HelloWorldApp",
+				methods2);
+		ReflectionUtil cheese = new ReflectionUtil(loadedClass, methodsObj,
+				HelloWorldApp);
+		if (cheese.checkClassName()) {
+			if (ReflectionUtil.compareMethodLists(methods, methods2)) {
+				assertEquals("Hey jij daar", m.invoke(k));
+			}
+		}
+
 	}
 
-		
-	
+	@Test
+	public void testMethodA() throws ClassNotFoundException,
+			InstantiationException, IllegalAccessException, IOException {
+		URIClassLoader test = new URIClassLoader();
+		Class loadedClass = test.loadCompiledClass(className, pathToClass);
+		IHelloWorldApp ihwp = ((IHelloWorldApp) loadedClass.newInstance());
+		assertEquals(ihwp.getHello(), ihwp.getHello());
+
 	}
 
-}*/
+}

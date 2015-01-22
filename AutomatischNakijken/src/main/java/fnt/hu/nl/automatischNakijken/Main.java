@@ -1,9 +1,7 @@
 package fnt.hu.nl.automatischNakijken;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,31 +15,16 @@ import fnt.hu.nl.automatischNakijken.data.HibernateUtil;
 import fnt.hu.nl.automatischNakijken.domain.Assignment;
 import fnt.hu.nl.automatischNakijken.domain.AssignmentCheck;
 import fnt.hu.nl.automatischNakijken.domain.AssignmentType;
-import fnt.hu.nl.automatischNakijken.domain.AutomaticCheck;
 import fnt.hu.nl.automatischNakijken.domain.Class;
 import fnt.hu.nl.automatischNakijken.domain.Course;
 import fnt.hu.nl.automatischNakijken.domain.CoursePeriod;
 import fnt.hu.nl.automatischNakijken.domain.Instructor;
 import fnt.hu.nl.automatischNakijken.domain.Solution;
-import fnt.hu.nl.automatischNakijken.domain.SolutionFile;
 import fnt.hu.nl.automatischNakijken.domain.SolutionRepository;
 import fnt.hu.nl.automatischNakijken.domain.Student;
 import fnt.hu.nl.automatischNakijken.domain.TargetLanguage;
 import fnt.hu.nl.automatischNakijken.domain.TeachingAssistant;
 import fnt.hu.nl.automatischNakijken.domain.WorkGroup;
-import fnt.hu.nl.automatischNakijken.logic.CheckStyleEvaluator;
-import fnt.hu.nl.automatischNakijken.logic.JUnitEvaluator;
-import fnt.hu.nl.automatischNakijken.logic.JavaConverter;
-import fnt.hu.nl.automatischNakijken.logic.PMDEvaluator;
-import fnt.hu.nl.automatischNakijken.logic.PlagiarismDetector;
-import fnt.hu.nl.automatischNakijken.test.IHelloWorldAppTest;
-import fnt.hu.nl.automatischNakijken.util.CheckStyleRunner;
-import fnt.hu.nl.automatischNakijken.util.FolderChecker;
-import fnt.hu.nl.automatischNakijken.util.PMDRunner;
-import fnt.hu.nl.automatischNakijken.util.ReflectionUtil;
-import fnt.hu.nl.automatischNakijken.util.TestRunner;
-import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
-import fnt.hu.nl.opdracht.IHelloWorldApp;
 
 /**
  * Main class Automatisch nakijksysteem

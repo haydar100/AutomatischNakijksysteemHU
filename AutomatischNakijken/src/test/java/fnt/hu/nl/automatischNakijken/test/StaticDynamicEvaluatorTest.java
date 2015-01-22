@@ -36,11 +36,11 @@ public class StaticDynamicEvaluatorTest {
 		students1.add(student1);
 		students2.add(student2);
 		students3.add(student3);
-		String filePath = "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java";
+		String filePath = "C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldApp.java";
 		SolutionFile file = new SolutionFile(filePath);
-		String filePath2 = "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java";
+		String filePath2 = "C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldApp.java";
 		SolutionFile file2 = new SolutionFile(filePath2);
-		String filePath3 = "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java";
+		String filePath3 = "C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldApp.java";
 		SolutionFile file3 = new SolutionFile(filePath3);
 		List<SolutionFile> files = new ArrayList<SolutionFile>();
 		files.add(file);
@@ -57,9 +57,9 @@ public class StaticDynamicEvaluatorTest {
 		solutions.add(solution3);
 		SolutionRepository repository = new SolutionRepository(null, null, solutions, false, TargetLanguage.Java);
 		//CheckStyleEvaluator fcr = new CheckStyleEvaluator("CheckStyleEvaluator", false, solution1, , filePath3);
-		CheckStyleEvaluator fcr = new CheckStyleEvaluator("CheckStyle", false, solution1, "HelloWorldApp","C:\\Users\\Berkan\\Desktop\\test\\");
-		PMDEvaluator pmde = new PMDEvaluator("PMD", false, solution1, "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java");
-		JUnitEvaluator junite = new JUnitEvaluator("PMD",false, solution1, "HelloWorldApp", "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java", "C:\\Users\\Berkan\\Desktop\\test\\");
+		CheckStyleEvaluator fcr = new CheckStyleEvaluator("CheckStyle", false, solution1, "HelloWorldApp","C:\\Users\\Berkan\\Documents\\testfolder\\");
+		PMDEvaluator pmde = new PMDEvaluator("PMD", false, solution1, "C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldApp.java");
+		JUnitEvaluator junite = new JUnitEvaluator("JUnit",false, solution1, "HelloWorldApp", "C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldApp.java", "C:\\Users\\Berkan\\Documents\\testfolder\\");
 		pmde.runCheck(solution1);
 		System.out.println("-----------------------------------------------------------------");
 		fcr.runCheck(solution1);

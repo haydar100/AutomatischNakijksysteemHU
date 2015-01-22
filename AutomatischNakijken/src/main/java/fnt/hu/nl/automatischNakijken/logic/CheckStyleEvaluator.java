@@ -12,7 +12,7 @@ import fnt.hu.nl.automatischNakijken.domain.SolutionEvaluation;
 import fnt.hu.nl.automatischNakijken.domain.SolutionEvaluationCriteria;
 import fnt.hu.nl.automatischNakijken.domain.SolutionFile;
 import fnt.hu.nl.automatischNakijken.domain.Student;
-import fnt.hu.nl.automatischNakijken.test.IHelloWorldAppTest;
+import fnt.hu.nl.automatischNakijken.test.HelloWorldAppTest;
 import fnt.hu.nl.automatischNakijken.util.CheckStyleRunner;
 import fnt.hu.nl.automatischNakijken.util.FolderChecker;
 import fnt.hu.nl.automatischNakijken.util.PMDRunner;

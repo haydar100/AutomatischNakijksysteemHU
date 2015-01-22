@@ -6,7 +6,7 @@ import fnt.hu.nl.automatischNakijken.domain.Solution;
 import fnt.hu.nl.automatischNakijken.domain.SolutionEvaluationCriteria;
 import fnt.hu.nl.automatischNakijken.domain.SolutionFile;
 import fnt.hu.nl.automatischNakijken.domain.Student;
-import fnt.hu.nl.automatischNakijken.test.IHelloWorldAppTest;
+import fnt.hu.nl.automatischNakijken.test.HelloWorldAppTest;
 import fnt.hu.nl.automatischNakijken.util.FolderChecker;
 import fnt.hu.nl.automatischNakijken.util.TestRunner;
 import fnt.hu.nl.automatischNakijken.util.URIClassLoader;
@@ -53,7 +53,7 @@ public class JUnitEvaluator extends AutomaticCheck {
 
 	public void runJUnit() {
 		TestRunner runner = new TestRunner();
-		IHelloWorldAppTest instance = new IHelloWorldAppTest();
+		HelloWorldAppTest instance = new HelloWorldAppTest();
 		URIClassLoader UriClassLoader = new URIClassLoader();
 		FolderChecker.removeFilesWithClassExtension(pathToClassFolder);
 		UriClassLoader.compileJavaSourceFile(pathToClass);

@@ -11,9 +11,9 @@ public class JavaConverterTest extends TestCase {
 
 	public void testConvertSourceCode() {
 		//Arrange
-		String filePath = "/Users/roystraub/Desktop/Class.java";
-		String filePathPlagiarised = "/Users/roystraub/Desktop/ClassPlagiarised.java";
-		String newFilePath = "/Users/roystraub/Desktop/Class.tff";
+		String filePath = "C:\\Users\\Berkan\\Documents\\testfolderRoy\\Class.java";
+		String filePathPlagiarised = "C:\\Users\\Berkan\\Documents\\testfolderRoy\\ClassPlagiarised.java";
+		String newFilePath = "C:\\Users\\Berkan\\Documents\\testfolderRoy\\Class.tff";
 		File file = new File(filePath);
 		File plagiarisedFile = new File(filePathPlagiarised);
 		
