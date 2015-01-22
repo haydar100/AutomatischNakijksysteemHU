@@ -1,5 +1,6 @@
 package fnt.hu.nl.automatischNakijken.domain;
 
+
 public class AutomaticCheck implements AssignmentCheck {
 	private String name;
 	private boolean isFailable;
@@ -17,7 +18,6 @@ public class AutomaticCheck implements AssignmentCheck {
 
 
 	public SolutionEvaluationCriteria runCheck(Solution s) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

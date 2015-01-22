@@ -6,8 +6,9 @@ public class SolutionEvaluationCriteria {
 	private String name;
 	private Grade grade;	
 	
-	private SolutionEvaluationCriteria(){
-		
+	public SolutionEvaluationCriteria(String name, Grade grade){
+		this.name = name;
+		this.grade = grade;
 	}
 	
 	public int getId() {

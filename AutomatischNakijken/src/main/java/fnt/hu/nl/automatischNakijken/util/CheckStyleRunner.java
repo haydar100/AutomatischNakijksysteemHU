@@ -21,37 +21,49 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 import fnt.hu.nl.automatischNakijken.domain.AutomaticCheck;
+import fnt.hu.nl.automatischNakijken.domain.Grade;
 
-public class CheckStyleRunner extends AutomaticCheck {
-	
-		
-	public CheckStyleRunner(String name, boolean isFailable) {
-		super(name, isFailable);
-		// TODO Auto-generated constructor stub
+public class CheckStyleRunner {
+	ByteArrayOutputStream sos = new ByteArrayOutputStream();
+	int errors;
+	Grade grade;
+
+	public CheckStyleRunner() {
 	}
 
-	public void run(Object testClassInstance,
-			final String folderToCheck, String ruleFileName)
-			throws FileNotFoundException, CheckstyleException {
+	public void run(Object testClassInstance, final String folderToCheck,
+			String ruleFileName) throws FileNotFoundException,
+			CheckstyleException {
 
 		File fileFolderToCheck = new File(folderToCheck);
 
 		List<File> files = new ArrayList<File>();
 		FolderChecker.listFiles(files, fileFolderToCheck, "java");
-		ByteArrayOutputStream sos = new ByteArrayOutputStream();
+		sos = new ByteArrayOutputStream();
 		AuditListener listener = new DefaultLogger(sos, false);
-		String getXMLpath = System.getProperty("user.dir") + "\\" + ruleFileName;
-		InputSource inputSource = new InputSource(this.getClass().getResourceAsStream(ruleFileName));
-		Configuration configuration = ConfigurationLoader.loadConfiguration(getXMLpath, null, false);
-	
-		
+		String getXMLpath = System.getProperty("user.dir") + "\\"
+				+ ruleFileName;
+		InputSource inputSource = new InputSource(this.getClass()
+				.getResourceAsStream(ruleFileName));
+		Configuration configuration = ConfigurationLoader.loadConfiguration(
+				getXMLpath, null, false);
+
 		Checker checker = checkerConfiguration(listener, configuration);
-		int errors = checker.process(files);
-		System.out.println("CheckStyle has found " + errors + "" +  " Errors");
+		errors = checker.process(files);
+		System.out.println("CheckStyle has found " + errors + "" + " Errors");
 		System.out.println(sos.toString());
 
 		checker.destroy();
 
+	}
+
+	public Grade grade() {
+		if (errors > 0) {
+			grade = Grade.O;
+		} else {
+			grade = Grade.V;
+		}
+		return grade;
 	}
 
 	private static Checker checkerConfiguration(AuditListener listener,
@@ -61,6 +73,11 @@ public class CheckStyleRunner extends AutomaticCheck {
 		checker.configure(configuration);
 		checker.addListener(listener);
 		return checker;
+	}
+
+	public String toString() {
+		String s = sos.toString() + "\n Grade :" + grade();
+		return s;
 	}
 
 }

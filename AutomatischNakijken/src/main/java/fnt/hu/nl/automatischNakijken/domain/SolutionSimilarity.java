@@ -48,7 +48,7 @@ public class SolutionSimilarity implements Comparable<SolutionSimilarity> {
 		this.similarityPercentage = similarityPercentage;
 	}
 
-	@Override
+	//@Override
 	public int compareTo(SolutionSimilarity otherSimilarity) {
 		Double tempPercentage = new Double(this.similarityPercentage);
 		Double otherPercentage = otherSimilarity.getSimilarityPercentage();

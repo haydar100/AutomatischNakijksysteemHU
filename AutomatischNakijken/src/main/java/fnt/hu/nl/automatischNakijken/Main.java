@@ -23,11 +23,17 @@ import fnt.hu.nl.automatischNakijken.domain.Course;
 import fnt.hu.nl.automatischNakijken.domain.CoursePeriod;
 import fnt.hu.nl.automatischNakijken.domain.Instructor;
 import fnt.hu.nl.automatischNakijken.domain.Solution;
+import fnt.hu.nl.automatischNakijken.domain.SolutionFile;
 import fnt.hu.nl.automatischNakijken.domain.SolutionRepository;
 import fnt.hu.nl.automatischNakijken.domain.Student;
 import fnt.hu.nl.automatischNakijken.domain.TargetLanguage;
 import fnt.hu.nl.automatischNakijken.domain.TeachingAssistant;
 import fnt.hu.nl.automatischNakijken.domain.WorkGroup;
+import fnt.hu.nl.automatischNakijken.logic.CheckStyleEvaluator;
+import fnt.hu.nl.automatischNakijken.logic.JUnitEvaluator;
+import fnt.hu.nl.automatischNakijken.logic.JavaConverter;
+import fnt.hu.nl.automatischNakijken.logic.PMDEvaluator;
+import fnt.hu.nl.automatischNakijken.logic.PlagiarismDetector;
 import fnt.hu.nl.automatischNakijken.test.IHelloWorldAppTest;
 import fnt.hu.nl.automatischNakijken.util.CheckStyleRunner;
 import fnt.hu.nl.automatischNakijken.util.FolderChecker;
@@ -46,18 +52,51 @@ public class Main {
 	public static void main(String[] args) throws InstantiationException,
 			IllegalAccessException, CheckstyleException, IOException,
 			URISyntaxException {
-		runJUnit();
-		runCheckStyle();
-		runPMD();
-		// RunPMD();
-		// setupDatabaseEntities();
+		runTest();
 	}
 	
-	private static void reflectionTest() {
+	public static void runTest() {
+		//Arrange
+		List<Student> students1 = new ArrayList<Student>();
+		List<Student> students2 = new ArrayList<Student>();
+		List<Student> students3 = new ArrayList<Student>();
+		Student student1 = new Student("Haydar", "Yilmaz", "Haydar Yilmaz", "test@test.nl");
+		Student student2 = new Student("Roy", "Straub", "Roy Straub", "test@test.nl");
+		Student student3 = new Student("Sjaak", "Bonenstaak", "Sjaak Bonenstaak", "test@test.nl");
+		students1.add(student1);
+		students2.add(student2);
+		students3.add(student3);
+		String filePath = "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java";
+		SolutionFile file = new SolutionFile(filePath);
+		String filePath2 = "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java";
+		SolutionFile file2 = new SolutionFile(filePath2);
+		String filePath3 = "C:\\Users\\Berkan\\Desktop\\test\\HelloWorldApp.java";
+		SolutionFile file3 = new SolutionFile(filePath3);
+		List<SolutionFile> files = new ArrayList<SolutionFile>();
+		files.add(file);
+		List<SolutionFile> files2 = new ArrayList<SolutionFile>();
+		files2.add(file2);
+		List<SolutionFile> files3 = new ArrayList<SolutionFile>();
+		files3.add(file3);
+		Solution solution1 = new Solution(null, null, null, null, null, null, students1, files3, Calendar.getInstance(), true);
+		Solution solution2 = new Solution(null, null, null, null, null, null, students2, files2, Calendar.getInstance(), true);
+		Solution solution3 = new Solution(null, null, null, null, null, null, students3, files, Calendar.getInstance(), true);
+		List<Solution> solutions = new ArrayList<Solution>();
+		solutions.add(solution1);
+		solutions.add(solution2);
+		solutions.add(solution3);
+		SolutionRepository repository = new SolutionRepository(null, null, solutions, false, TargetLanguage.Java);
+		CheckStyleEvaluator fcr = new CheckStyleEvaluator("CheckStyleEvaluator", false, solution1);
+		PMDEvaluator pmde = new PMDEvaluator("PMD", false, solution1);
+		JUnitEvaluator junite = new JUnitEvaluator("JUNIT", true, solution1);
+		pmde.runCheck(solution1);
+		fcr.runCheck(solution1);
+		junite.runCheck(solution1);
+		
 		
 	}
-
-	private static void runJUnit() {
+	
+/*	private static void runJUnit() {
 		TestRunner runner = new TestRunner();
 		IHelloWorldAppTest instance = new IHelloWorldAppTest();
 		URIClassLoader UriClassLoader = new URIClassLoader();
@@ -84,10 +123,14 @@ public class Main {
 	}
 
 	private static void runPMD() throws IOException {
+		AutomaticCheck check = new AutomaticCheck(name, isFailable);
+		check.runCheck(s)
 		PMDRunner pmd = new PMDRunner("PMD", true);
+		CheckStyleRunner run = new CheckStyleRunner("blabla", true);
 		pmd.callPmd("C:\\Users\\Berkan\\Documents\\testfolder\\HelloWorldApp.java");
+		pmd.runCheck(s)
 
-	}
+	}*/
 
 	private static void setupDatabaseEntities() {
 

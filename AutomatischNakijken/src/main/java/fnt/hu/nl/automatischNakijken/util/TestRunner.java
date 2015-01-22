@@ -7,11 +7,14 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
+import fnt.hu.nl.automatischNakijken.domain.Grade;
+
 /**
  * @author Berkan
  *
  */
 public class TestRunner {
+	Grade grade;
 
 	public void runClass(Class testClass) {
 		Result result = JUnitCore.runClasses(testClass);
@@ -20,10 +23,26 @@ public class TestRunner {
 
 		for (Failure failure : result.getFailures()) {
 			System.out.println(failure.toString());
+			grade = Grade.O;
 
 		}
 		if (result.wasSuccessful()) {
 			System.out.println("All tests passed...");
+			grade = Grade.V;
 		}
+	}
+
+	/**
+	 * @return the grade
+	 */
+	public Grade getGrade() {
+		return grade;
+	}
+
+	/**
+	 * @param grade the grade to set
+	 */
+	public void setGrade(Grade grade) {
+		this.grade = grade;
 	}
 }

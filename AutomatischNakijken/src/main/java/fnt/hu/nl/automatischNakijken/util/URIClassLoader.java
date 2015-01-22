@@ -1,28 +1,14 @@
 package fnt.hu.nl.automatischNakijken.util;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Field;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.tools.*;
-
-import com.sun.org.apache.bcel.internal.Repository;
-import com.sun.org.apache.bcel.internal.util.ClassPath;
-import com.sun.org.apache.bcel.internal.util.SyntheticRepository;
-
-import fnt.hu.nl.automatischNakijken.logic.JavaConverter;
+import javax.tools.JavaCompiler;
+import javax.tools.ToolProvider;
 
 public class URIClassLoader {
 	private final Logger logger = Logger.getLogger(URIClassLoader.class
@@ -49,10 +35,6 @@ public class URIClassLoader {
 		
 		
 		
-	}
-
-	public void executeTests() {
-
 	}
 
 	public Class<?> loadCompiledClass(String className, String rootFolder) {

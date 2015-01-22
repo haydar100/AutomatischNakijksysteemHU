@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fnt.hu.nl.automatischNakijken.domain.AutomaticCheck;
+import fnt.hu.nl.automatischNakijken.domain.Grade;
 import net.sourceforge.pmd.PMD;
 
-public class PMDRunner extends AutomaticCheck {
-	public PMDRunner(String name, boolean isFailable) {
-		super(name, isFailable);
-		// TODO Auto-generated constructor stub
-	}
+public class PMDRunner  {
+	
 
 	String codeToCheck;
 	String customRuleSet;
+	int errors;
+	Grade grade;
 
 	public void callPmd(String codeToCheck) throws IOException {
 		PrintStream out = System.out;
@@ -44,11 +44,26 @@ public class PMDRunner extends AutomaticCheck {
 				rowsOut.add(line);
 			}
 		}
+
 		System.out.println("Found " + rowsOut.size() + " errors in " + codeToCheck );
+		errors = rowsOut.size();
 		for (String error : rowsOut) {
 			System.out.println(error);
 		}
+		
 
 	}
+	
+	public Grade grade() {
+		if (errors > 0) {
+			grade = Grade.O;
+		} else {
+			grade = Grade.V;
+		}
+		return grade;
+	}
+
+	
+
 
 }
