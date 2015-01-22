@@ -22,7 +22,7 @@ public class TestRunner {
 				+ testClass.getName());
 
 		for (Failure failure : result.getFailures()) {
-			System.out.println(failure.toString());
+			System.out.println("Output not correct : " + failure.toString());
 			grade = Grade.O;
 
 		}
