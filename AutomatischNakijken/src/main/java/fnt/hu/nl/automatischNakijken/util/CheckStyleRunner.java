@@ -54,7 +54,7 @@ public class CheckStyleRunner {
 	}
 
 	public Grade grade() {
-		if (errors > 0) {
+		if (errors > 0) { // 
 			grade = Grade.O;
 		} else {
 			grade = Grade.V;
